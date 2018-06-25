@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-navbar  color="primary" class="navbar">
+    <button ion-button menuToggle><ion-icon name="md-list-box"></ion-icon></button>
+    <ion-title style="margin-right:15%;">Stores</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-tabs #myTabs tabsPlacement="top">
+    <ion-tab tabTitle="Most deals" tabIcon="pulse" [root]="tab1root"></ion-tab>
+    <ion-tab tabTitle="Nearby me" [root]="tab2root"></ion-tab>
+  </ion-tabs>
+</ion-content>

@@ -1,1 +1,25 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu type="push" [content]="mycontent">
+  <ion-header>
+    <ion-toolbar color="dark2">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content  class="navbar" >
+      <ion-list>
+
+        <div class="buttonlist" *ngFor="let element of pages" [class.buttonlistactive]="pageStatus(element)">
+          <button clear menuToggle ion-button class="mbutton" (click)="open(element)">
+          <ion-item class="itemlist">
+          <ion-icon name={{element.icon}} item-start></ion-icon>
+            {{element.title}}
+          </ion-item>
+          </button>
+        </div>
+
+
+
+
+      </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav #mycontent [root]="rootPage"></ion-nav>

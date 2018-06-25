@@ -1,5 +1,4 @@
-page-home {
-
+page-nearby {
   .navbar{text-align: center;}
   .searchbar{width:100%;
             margin: 0 0%;
@@ -12,4 +11,6 @@ page-home {
           padding:10px}
   .footer{background-color: (map-get($colors, primary));
           position: fixed}
+  #map{height:100%;width:100%;
+  }
 }

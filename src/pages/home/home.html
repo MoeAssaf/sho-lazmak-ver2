@@ -1,14 +1,44 @@
+
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+  <ion-navbar  color="primary" class="navbar">
+    <button ion-button menuToggle><ion-icon name="md-list-box"></ion-icon></button>
+    <ion-title style="margin-right:15%;">Home</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content >
+
+<div class="slide">
+
+  <ion-slides autoplay="5000" loop="true" speed="1000" >
+<!-- Loads sale pictures from list in home.ts -->
+    <ion-slide *ngFor="let link of pictures">
+      <img class="ad" src="{{link.picture}}">
+    </ion-slide>
+
+  </ion-slides>
+
+  <div width=100% padding>
+    <ion-searchbar	 class="searchbar"(ionInput)="getItems($event)"></ion-searchbar>
+  </div>
+
+<ion-list>
+<!-- Loads buttons from list in home.ts -->
+<div *ngFor="let button of buttons">
+<button  ion-button clear  style="button" (click)="ViewContents(button.category)">
+  <ion-item>
+    <ion-icon name="{{button.icon}}" item-start></ion-icon>
+      {{button.content}}
+    <ion-icon name="ios-arrow-forward" item-end></ion-icon>
+  </ion-item>
+</button>
+
+</div>
+
+</ion-list>
+</div>
+<br>
+<br>
+<ion-footer class="footer" ng-click="myRegisterFunction()" padding>
+</ion-footer>
 </ion-content>

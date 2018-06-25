@@ -1,0 +1,65 @@
+<ion-content no-bounce style="height: 100%;" >
+
+  <ion-grid style="padding:0px;height:100%;" ion-fixed>
+    <br>
+    <br>
+    <ion-row justify-content-center>
+      <h1 class="login">LOGIN</h1>
+    </ion-row>
+    <br>
+    <br>
+    <br>
+    <form (ngSubmit)="logForm()"  >
+    <ion-row justify-content-center>
+
+        <!-- <h1 class="header">SnapCard</h1> -->
+        <!-- <ion-img [width]="150" [height]="150" src="images/logo.png" ></ion-img> -->
+
+    </ion-row>
+
+    <!-- THIS IS  THE FORM  -->
+    <ion-row justify-content-center padding>
+      <ion-col>
+        <ion-list>
+          <ion-item ion-fixed>
+            <ion-label color="primary" stacked>Email</ion-label>
+            <ion-input type="email" placeholder="example@gmail.com" type="email" [(ngModel)]="todo.email" name="email" ></ion-input>
+          </ion-item>
+          <br>
+          <ion-item>
+            <ion-label color="primary" stacked>Password</ion-label>
+            <ion-input type="password" placeholder="example123" [(ngModel)]="todo.password" name="password"></ion-input>
+          </ion-item>
+        </ion-list>
+    </ion-col>
+    </ion-row>
+    <br>
+    <ion-row justify-content-center >
+      <button ion-button type="submit" round outline>Login</button>
+    </ion-row>
+  </form>
+  <!-- FORM ENDS HERE -->
+
+<br>
+
+
+
+<br>
+<br>
+<br>
+<br>
+
+<ion-row class="flyer" justify-content-center style="height:34%;float:bottom">
+<!-- <div class="flyer" style="width:100%;height:100%" text-center> -->
+
+    <h3  style="color:white">Dont have an account?</h3>
+    <button ion-button  (click)="register()" round color="white"><p  class="button-content">Create a new account<p></button>
+
+<!-- </div> -->
+</ion-row>
+
+
+
+
+  </ion-grid>
+</ion-content>

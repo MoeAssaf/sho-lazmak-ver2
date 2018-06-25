@@ -1,6 +1,31 @@
 // http://ionicframework.com/docs/theming/
 
 
+.navbar{
+  background-color: map-get($colors, dark)
+
+}
+.mbutton{width:100%;
+        padding:10px}
+
+.buttonlist{
+  height:20%;
+  margin-top:0%;
+  width:100%;
+
+}
+.buttonlistactive{
+  height:20%;
+  margin-top:0%;
+  width:100%;
+  background-color: map-get($colors, lightdark)
+}
+.itemlist{
+	border-color: rgba(0, 0, 0, 0);
+	background-color: rgba(0, 0, 0, 0);
+	color: white;
+}
+// App Gl
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These

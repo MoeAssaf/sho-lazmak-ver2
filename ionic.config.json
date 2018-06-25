@@ -1,6 +1,6 @@
 {
-  "name": "sholazmak",
-  "app_id": "",
+  "name": "ShoLazmak",
+  "app_id": "059916bf",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

@@ -1,0 +1,9 @@
+page-stores {
+
+    .navbar{text-align: center;}
+    .slide{display: block;}
+    .searchbar{width:100%;
+              margin: 0 0%;
+              background-color: map-get($colors, light);
+              border-radius: 10px}
+}
