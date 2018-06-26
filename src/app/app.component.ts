@@ -4,9 +4,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { HomePage } from '../pages/home/home';
 import { StoresPage } from "../pages/stores/stores";
 import { LoginPage } from "../pages/login/login"
+import { PublicPage } from '../pages/public/public';
 @Component({
   templateUrl: 'app.html'
 })
@@ -20,7 +20,7 @@ export class MyApp {
     this.activePage = "TabsPage";
     this.pages = [
       { title: 'Home', icon:'ios-home-outline', component: TabsPage },
-      { title: 'Other offers & deals', icon:'ios-basket-outline', component: null },
+      { title: 'Other offers & deals', icon:'ios-basket-outline', component: PublicPage },
       { title: 'Stores', icon:'ios-navigate-outline', component: StoresPage},
       { title: 'Login/Register', icon:'ios-at-outline', component: LoginPage },
       { title: 'Settings', icon:'ios-construct-outline', component: null },

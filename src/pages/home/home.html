@@ -25,7 +25,7 @@
 <ion-list>
 <!-- Loads buttons from list in home.ts -->
 <div *ngFor="let button of buttons">
-<button  ion-button clear  style="button" (click)="ViewContents(button.category)">
+<button  ion-button clear  (click)="ViewContents(button.category)">
   <ion-item>
     <ion-icon name="{{button.icon}}" item-start></ion-icon>
       {{button.content}}

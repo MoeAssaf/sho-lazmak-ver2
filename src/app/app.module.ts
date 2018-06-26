@@ -18,8 +18,15 @@ import { ProductsPage } from "../pages/products/products";
 import { NearbyPage } from "../pages/nearby/nearby";
 import { StoresPage } from "../pages/stores/stores";
 import { LoginPage } from "../pages/login/login";
+import { RegisterPage } from "../pages/register/register";
+import { PublicPage } from '../pages/public/public';
+
+
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -29,6 +36,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
     NearbyPage,
     StoresPage,
     LoginPage,
+    RegisterPage,
+    PublicPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -38,6 +47,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
     BrowserModule,
     HttpModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireDatabaseModule,
     IonicStorageModule.forRoot()
 
   ],
@@ -50,6 +60,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
     NearbyPage,
     StoresPage,
     LoginPage,
+    PublicPage
 
   ],
   providers: [

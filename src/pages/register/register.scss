@@ -1,0 +1,6 @@
+page-register {
+  .flyer{background-color: map-get($colors, primary);}
+  .header{color:white}
+  .button-content{color: map-get($colors, primary)}
+  .input{border-radius: 15px}
+}

@@ -1,0 +1,78 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-content padding class="flyer">
+
+    <ion-grid style="padding:0px;height:100%;" >
+      <br>
+      <br>
+      <br>
+      <ion-row justify-content-center>
+        <ion-col text-center >
+          <h1 class="header">Register</h1>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-img [width]="150" [height]="150" src="images/logo.png" ></ion-img> -->
+      <br>
+      <br>
+      <br>
+      <!-- THIS IS  THE FORM  -->
+      <form (ngSubmit)="logForm()">
+      <ion-row justify-content-center padding>
+        <ion-col>
+            <ion-item class="input">
+              <ion-label color="primary" stacked>Name</ion-label>
+              <ion-input type="text" placeholder="Your name" [(ngModel)]="profile.name" name="name" required></ion-input>
+            </ion-item>
+          </ion-col>
+          &nbsp;
+
+
+          <ion-col>
+            <ion-item class="input">
+              <ion-label color="primary" stacked>Surname</ion-label>
+              <ion-input  type="text" placeholder="Your last name"  [(ngModel)]="profile.surname" name="surname"required></ion-input>
+            </ion-item>
+          </ion-col>
+      </ion-row>
+
+      <ion-row justify-content-center padding>
+        <ion-col>
+            <ion-item class="input">
+              <ion-label color="primary" stacked>Email</ion-label>
+              <ion-input type="email" placeholder="example@gmail.com" [(ngModel)]="todo.email" name="email"required ></ion-input>
+            </ion-item>
+          </ion-col>
+      </ion-row>
+      <ion-row justify-content-center padding>
+        <ion-col>
+            <ion-item class="input">
+              <ion-label color="primary" stacked>Password</ion-label>
+              <ion-input type="password" placeholder="At least 6 charachters" [(ngModel)]="todo.password1" name="password1"required ></ion-input>
+            </ion-item>
+          </ion-col>
+      </ion-row>
+      <ion-row justify-content-center padding>
+        <ion-col>
+            <ion-item class="input">
+              <ion-label color="primary" stacked>Confirm password</ion-label>
+              <ion-input type="password" placeholder="Re-enter password" [(ngModel)]="todo.password2" name="password2" required></ion-input>
+            </ion-item>
+          </ion-col>
+      </ion-row>
+      <br>
+      <ion-row justify-content-center >
+          <button ion-button  type="submit" round color="white"><p  class="button-content" required>Submit<p></button>
+      </ion-row>
+    </form>
+    <!-- FORM ENDS HERE -->
+
+
+
+    </ion-grid>
+</ion-content>
