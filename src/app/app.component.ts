@@ -7,6 +7,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StoresPage } from "../pages/stores/stores";
 import { LoginPage } from "../pages/login/login"
 import { PublicPage } from '../pages/public/public';
+import { SettingsPage } from '../pages/settings/settings'
 @Component({
   templateUrl: 'app.html'
 })
@@ -23,7 +24,7 @@ export class MyApp {
       { title: 'Other offers & deals', icon:'ios-basket-outline', component: PublicPage },
       { title: 'Stores', icon:'ios-navigate-outline', component: StoresPage},
       { title: 'Login/Register', icon:'ios-at-outline', component: LoginPage },
-      { title: 'Settings', icon:'ios-construct-outline', component: null },
+      { title: 'Settings', icon:'ios-construct-outline', component: SettingsPage },
     ];
 
 // ===========================SPLASHSCREEN==================================

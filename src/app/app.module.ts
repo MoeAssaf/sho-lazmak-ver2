@@ -20,7 +20,7 @@ import { StoresPage } from "../pages/stores/stores";
 import { LoginPage } from "../pages/login/login";
 import { RegisterPage } from "../pages/register/register";
 import { PublicPage } from '../pages/public/public';
-
+import { SettingsPage } from '../pages/settings/settings'
 
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -37,7 +37,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     StoresPage,
     LoginPage,
     RegisterPage,
-    PublicPage
+    PublicPage,
+    SettingsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -60,7 +61,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     NearbyPage,
     StoresPage,
     LoginPage,
-    PublicPage
+    PublicPage,
+    SettingsPage,
+    RegisterPage
 
   ],
   providers: [

@@ -7,6 +7,7 @@
 <ion-header  >
 
   <ion-navbar color="primary"> 
+    
       <button ion-button menuToggle><ion-icon name="md-list-box"></ion-icon></button>
   </ion-navbar>
 
@@ -14,4 +15,7 @@
 
 
 <ion-content padding>
+    <div width=100% padding >
+        <ion-searchbar	 class="searchbar"(ionInput)="getItems($event)"></ion-searchbar>
+      </div>
 </ion-content>

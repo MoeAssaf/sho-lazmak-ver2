@@ -85,6 +85,7 @@ async authenticate(field){
       this.navCtrl.setRoot(TabsPage);}
   }
   catch(error){
+    this.storage.set('state','unlogged')
     // errors or invalid
     this.alert("Please check your email and password!")
     console.log(error);
