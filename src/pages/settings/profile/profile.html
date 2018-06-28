@@ -1,0 +1,61 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar  color="primary" >
+    <ion-title>Edit your profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+<ion-grid>
+  <form (ngSubmit)="logForm()">
+    <ion-row justify-content-center padding>
+      <ion-item class="input">
+        <ion-label color="primary" stacked>Name</ion-label>
+        <ion-input type="text" placeholder="First name" [(ngModel)]="profile.name" name="name" ></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row justify-content-center padding>
+      <ion-item class="input">
+        <ion-label color="primary" stacked>Surname</ion-label>
+        <ion-input type="text" placeholder="Last name" [(ngModel)]="profile.surname" name="surname"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-row justify-content-center padding>
+      <ion-item class="input">
+        <ion-label color="primary" stacked>Phone number</ion-label>
+        <ion-input type="number" placeholder="Mobile phone number" [(ngModel)]="profile.number" name="number"></ion-input>
+      </ion-item>
+    </ion-row>
+      <ion-row justify-content-center padding>
+        <ion-item class="input">
+          <ion-label color="primary" stacked>Address 1</ion-label>
+          <ion-input type="text" placeholder="Street" [(ngModel)]="profile.address1" name="address1"></ion-input>
+        </ion-item>
+      </ion-row>
+      <ion-row justify-content-center padding>
+          <ion-item class="input">
+            <ion-label color="primary" stacked>Address 2</ion-label>
+            <ion-input type="text" placeholder="City/Town" [(ngModel)]="profile.address2" name="address2"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row justify-content-center padding>
+            <ion-item class="input">
+              <ion-label color="primary" stacked>Address 3</ion-label>
+              <ion-input type="text" placeholder="Country" [(ngModel)]="profile.address3" name="address3"></ion-input>
+            </ion-item>
+          </ion-row>
+          <br>
+          <br>
+          <ion-row justify-content-center >
+              <button ion-button outline round type="submit"  color="primary"><p  class="button-content" >Submit<p></button>
+          </ion-row>
+  </form>
+  </ion-grid>
+
+</ion-content>

@@ -5,7 +5,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Keyboard } from '@ionic-native/keyboard';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Storage } from '@ionic/storage';
-import { HomePage } from '../home/home';
 import { RegisterPage } from '../register/register';
 import { TabsPage } from '../tabs/tabs';
 

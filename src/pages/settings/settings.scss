@@ -5,10 +5,19 @@ page-settings {
     .name{
         color: map-get($colors, primary )
     }
+    .h6{
+        color: map-get($colors, primary );
+        
+
+    }
     .picture{
         background-color: map-get($colors, light);
-        width: 110px; height: 110px;
+        width: 120px; height: 120px;
         border-radius: 50%;
-        margin-top:15px
+        margin: auto;
+        
+    }
+    ion-icon {
+        font-size: 20px; //Preferred size here
     }
 }
