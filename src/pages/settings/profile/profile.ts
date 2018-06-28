@@ -24,6 +24,7 @@ export class ProfilePage {
   address1: string = this.navParams.get('address1');
   address2: string = this.navParams.get('address2');
   address3: string = this.navParams.get('address3');
+  number: string = this.navParams.get('number');
 
   
   // profile: FirebaseListObservable<Profile[]>;
@@ -33,6 +34,7 @@ export class ProfilePage {
     private afDB: AngularFireDatabase, private alertCtrl : AlertController, private storage: Storage)  {
       this.profile = {} as Profile
       this.profile.name = this.name
+      this.profile.number = this.number
       this.profile.surname = this.surname
       this.profile.address1 = this.address1
       this.profile.address2 = this.address2
