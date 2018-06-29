@@ -11,6 +11,7 @@ import { Keyboard } from '@ionic-native/keyboard'
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { IonicStorageModule } from '@ionic/storage';
+import { Camera } from '@ionic-native/camera'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,9 +24,11 @@ import { PublicPage } from '../pages/public/public';
 import { SettingsPage } from '../pages/settings/settings'
 import { ProfilePage } from '../pages/settings/profile/profile'
 
+import { Firebase } from '@ionic-native/firebase';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 
 @NgModule({
@@ -75,7 +78,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     Geolocation,
     Keyboard,
     AngularFireAuth,
-
+    AngularFireStorage,
+    Camera,
+    Firebase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

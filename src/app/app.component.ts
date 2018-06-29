@@ -3,11 +3,13 @@ import { Platform , Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+
 import { TabsPage } from '../pages/tabs/tabs';
 import { StoresPage } from "../pages/stores/stores";
 import { LoginPage } from "../pages/login/login"
 import { PublicPage } from '../pages/public/public';
-import { SettingsPage } from '../pages/settings/settings'
+import { SettingsPage } from '../pages/settings/settings';
+import { Storage } from '@ionic/storage';
 @Component({
   templateUrl: 'app.html'
 })
@@ -17,16 +19,36 @@ export class MyApp {
   rootPage:any = TabsPage;
   activePage:any
 
-  constructor(public platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,) {
+  constructor(public platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
+        private store: Storage) {
     this.activePage = "TabsPage";
+    // this.store.get('state').then((val) => {
+    //   console.log(val);
+    //   if( val != 'logged'){
+    //     this.pages = [
+    //       { title: 'Home', icon:'ios-home-outline', component: TabsPage },
+    //       { title: 'Other offers & deals', icon:'ios-basket-outline', component: PublicPage },
+    //       { title: 'Stores', icon:'ios-navigate-outline', component: StoresPage},
+    //       { title: 'Settings', icon:'ios-construct-outline', component: SettingsPage },
+    //     ];
+        
+    //   }else{
+    //     this.pages = [
+    //       { title: 'Home', icon:'ios-home-outline', component: TabsPage },
+    //       { title: 'Other offers & deals', icon:'ios-basket-outline', component: PublicPage },
+    //       { title: 'Stores', icon:'ios-navigate-outline', component: StoresPage},
+    //       { title: 'Login/Register', icon:'ios-at-outline', component: LoginPage },
+    //     ];
+    //   }}
+    // );
     this.pages = [
-      { title: 'Home', icon:'ios-home-outline', component: TabsPage },
-      { title: 'Other offers & deals', icon:'ios-basket-outline', component: PublicPage },
-      { title: 'Stores', icon:'ios-navigate-outline', component: StoresPage},
-      { title: 'Login/Register', icon:'ios-at-outline', component: LoginPage },
-      { title: 'Settings', icon:'ios-construct-outline', component: SettingsPage },
-    ];
+          { title: 'Home', icon:'ios-home-outline', component: TabsPage },
+          { title: 'Other offers & deals', icon:'ios-basket-outline', component: PublicPage },
+          { title: 'Stores', icon:'ios-navigate-outline', component: StoresPage},
+          { title: 'Login/Register', icon:'ios-at-outline', component: LoginPage },
+          { title: 'Settings', icon:'ios-construct-outline', component: SettingsPage },
 
+          ];
 // ===========================SPLASHSCREEN==================================
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

@@ -16,17 +16,33 @@
 
 
 <ion-content padding>
-<ion-card style="border-radius: 15px" padding *ngIf="ready">
+    <ion-refresher (ionRefresh)="doRefresh($event)" color="primary">
+        <ion-refresher-content 
+        color="primary"
+        pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing..."></ion-refresher-content>
+    
+      </ion-refresher>
+    
+<ion-card style="border-radius: 15px" padding *ngIf="ready" > 
+
   <ion-grid>
     <ion-row  align-items-center	text-center> 
       <button (click)="openForm()" round ion-button clear color="primary" ><ion-icon name="md-create"></ion-icon></button>
       <h1 class="name">{{profile.name}} {{profile.surname}}</h1>
     </ion-row>
     <ion-row justify-content-center	>
-      <ion-col align-self-center><div  class="picture" ></div></ion-col>
+      <ion-col *ngIf="profile_picture" align-self-center>
+        <ion-avatar class="picture" >
+        <img (click)="presentActionSheet()" 
+        [src]="profile_picture" >
+      </ion-avatar>
 
+      </ion-col>
     </ion-row>
-    <ion-row margin  align-items-end padding	style="margin-bottom: 0px;padding-bottom:0px">
+    <ion-row margin  align-items-end nopadding	style="margin-bottom: 0px;padding-bottom:0px">
         <ion-col  align-self-start	 >
       <h6 class="h6">Email:</h6>
       <h6 class="h6">Number:</h6>
@@ -42,7 +58,13 @@
         <h6 class="h6">{{profile.address3}}</h6>
             </ion-col>
     </ion-row>
+    <br>
+    <br>
+    <br>
+    <ion-row justify-content-center >
+        <button (click)="logout()" ion-button outline round  color="primary"><p  class="button-content" >Sign out<p></button>
+    </ion-row>
   </ion-grid>
-  
 </ion-card>
+
 </ion-content>

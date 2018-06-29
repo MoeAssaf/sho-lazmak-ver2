@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , AlertController} from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
-
+import {  FirebaseListObservable } from "angularfire2/database-deprecated";
 import { TabsPage } from '../tabs/tabs';
-import{ Profile } from '../../models/details'
+import{ Profile } from '../../models/details';import { LoginPage } from '../login/login';
+
+import { Storage } from '@ionic/storage';
+
 /**
  * Generated class for the RegisterPage page.
  *
@@ -21,7 +24,8 @@ export class RegisterPage {
   profile = {} as Profile;
   todo = {password1:"",password2:"",name:"",surname:"",email:""};
   constructor( private AFauth : AngularFireAuth,
-    public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private afDB: AngularFireDatabase) {
+    public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private afDB: AngularFireDatabase,
+    private store: Storage) {
   }
 
   ionViewDidLoad() {
@@ -68,7 +72,7 @@ export class RegisterPage {
     try{
       const result = await this.AFauth.auth.createUserWithEmailAndPassword(field.email, field.password1);
       console.log(result);
-      this.createProfile();
+      this.createProfile(field.email,field.password1);
      this.navCtrl.setRoot(TabsPage);
     }
     catch (error){
@@ -78,9 +82,13 @@ export class RegisterPage {
     }
 
   }
-  createProfile(){
+  createProfile(email, password){
     this.AFauth.authState.take(1).subscribe(auth =>{
-      this.afDB.object(`profile/${auth.uid}`).set(this.profile).then(() => this.navCtrl.setRoot(TabsPage) )
+      this.afDB.object(`profile/${auth.uid}`).set(this.profile).then(() => {
+        this.store.set('email',email);
+        this.store.set('password',password);
+        this.store.set('state','logged');
+        this.navCtrl.setRoot(LoginPage)} )
     }
   )
 }

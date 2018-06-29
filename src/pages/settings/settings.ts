@@ -1,10 +1,23 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams , AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams , AlertController, ActionSheetController} from 'ionic-angular';
 import { AngularFireAuth} from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireStorage } from "angularfire2/storage";
 import {  FirebaseListObservable } from "angularfire2/database-deprecated";
+import { Camera , CameraOptions} from "@ionic-native/camera";
+import { storage , initializeApp } from 'firebase';
+import  { FirebaseApp } from 'angularfire2';
+
+
 import{ Profile } from '../../models/details'
 import { LoginPage } from '../login/login';
+import { TabsPage } from "../tabs/tabs";
+
+import { FIREBASE_CONFIG } from '../../app/app.firebase.config';
+import { Firebase } from '@ionic-native/firebase';
+import "rxjs/add/operator/filter";
+import "rxjs/add/operator/first";
+
 import { Storage } from '@ionic/storage';
 import { ProfilePage } from './profile/profile'
 /**
@@ -25,9 +38,13 @@ export class SettingsPage {
   uid: any
   email: any
   ready: boolean
+  profile_picture: any
   constructor(public navCtrl: NavController, public navParams: NavParams,private AFauth : AngularFireAuth,
-              private afDB: AngularFireDatabase, private alertCtrl : AlertController, private storage: Storage) {
-                this.storage.get('state').then((val) => {
+              private afDB: AngularFireDatabase, private alertCtrl : AlertController, private store: Storage,
+              private camera: Camera, private afStore: AngularFireStorage, private firebase: Firebase, private firebaseApp : FirebaseApp,
+              public actionSheetCtrl: ActionSheetController){
+                //initializeApp(FIREBASE_CONFIG);
+                this.store.get('state').then((val) => {
                   console.log(val);
                   if( val != 'logged'){
                     this.alert('Please login or register first!');
@@ -56,13 +73,48 @@ export class SettingsPage {
                  this.profile.subscribe(data => {console.log('Grabbed profile', data);
                                     this.profile = data;
                                     this.ready = true;
-                                      console.log('Test',this.profile)
+                                    this.getProfileImageUrl();
                                                   });
+
    })
   }
   openForm(){
     this.navCtrl.push(ProfilePage, this.profile );
 
+  }
+  async takePhoto(){
+    try {
+    const options: CameraOptions = {
+      quality: 50,
+      targetHeight: 600,
+      targetWidth: 600,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true
+    };
+    const result = await this.camera.getPicture(options);
+
+    const image = `data:image/jpeg;base64,${result}`;
+
+  const pictures = storage().ref(`${this.uid}/profile_picture/image`);
+  pictures.putString(image, 'data_url');
+  this.navCtrl.setRoot(SettingsPage)
+  }
+
+  catch(e){
+    console.log(e)
+  }
+  }
+  //`${this.uid}/profile_picture/image`
+  getProfileImageUrl() {
+    const storageRef = this.firebaseApp.storage().ref().child(`${this.uid}/profile_picture/image`);
+    storageRef.getDownloadURL().then(url => {this.profile_picture = url;
+      console.log('Picture link',this.profile_picture)
+    });
+  }
+  addPhoto(){
+    this.takePhoto()
   }
   alert(comment){
     console.log(comment);
@@ -72,5 +124,54 @@ export class SettingsPage {
       buttons:[{text: " OK!"}]
     })
     ALERT.present()
+}
+doRefresh(refresher) {
+  console.log('Begin async operation', refresher);
+
+  setTimeout(() => {
+    console.log('Async operation has ended');
+    this.navCtrl.setRoot(SettingsPage);
+    refresher.complete();
+  }, 2000);
+}
+// action sheet
+presentActionSheet() {
+  let actionSheet = this.actionSheetCtrl.create({
+    title: 'Set profile picture',
+    buttons: [
+      // {
+      //   text: 'Destructive',
+      //   role: 'destructive',
+      //   handler: () => {
+      //     console.log('Destructive clicked');
+      //   }
+      // },
+      {
+        text: 'Take photo',
+        handler: () => {
+          this.addPhoto();
+          console.log('Archive clicked');
+        }
+      },
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }
+    ]
+  });
+
+  actionSheet.present();
+}
+logout(){
+  this.navCtrl.setRoot(TabsPage)
+  this.store.set('email',null);
+  this.store.set('password',null);
+  this.store.set('state','unlogged');
+  this.AFauth.auth.signOut().then(() => {
+    this.router.navigate(['']);
+ })
 }
 }
