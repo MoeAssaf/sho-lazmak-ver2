@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { NavController , AlertController , Platform} from 'ionic-angular';
+import { NavController , AlertController , Platform, Events} from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Keyboard } from '@ionic-native/keyboard';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -17,8 +17,15 @@ import { TabsPage } from '../tabs/tabs';
 export class LoginPage {
   todo = {email:"",password:""}
 
-  constructor(private AFauth : AngularFireAuth,public navCtrl: NavController,  private alertCtrl: AlertController, private platform: Platform
-              ,private keyboard : Keyboard, private stBar:StatusBar,private storage: Storage) {
+  constructor(
+    private AFauth : AngularFireAuth,
+    public navCtrl: NavController,
+      private alertCtrl: AlertController,
+      private platform: Platform,
+      private keyboard : Keyboard,
+      private stBar:StatusBar,
+      private storage: Storage,
+      public events: Events) {
     platform.ready().then(() => {
       // keeps keyboard from pushing the contents
       this.keyboard.disableScroll(true);
@@ -95,6 +102,7 @@ setLoginData(email,password){
     this.storage.set('email',email);
     this.storage.set('password',password);
     this.storage.set('state','logged');
+    this.events.publish('userloggedin');
     console.log('Storing details(SUCCESS)');
   }
 }

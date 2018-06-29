@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams , AlertController, ActionSheetController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams , AlertController, ActionSheetController, Events} from 'ionic-angular';
 import { AngularFireAuth} from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireStorage } from "angularfire2/storage";
@@ -39,10 +39,19 @@ export class SettingsPage {
   email: any
   ready: boolean
   profile_picture: any
-  constructor(public navCtrl: NavController, public navParams: NavParams,private AFauth : AngularFireAuth,
-              private afDB: AngularFireDatabase, private alertCtrl : AlertController, private store: Storage,
-              private camera: Camera, private afStore: AngularFireStorage, private firebase: Firebase, private firebaseApp : FirebaseApp,
-              public actionSheetCtrl: ActionSheetController){
+  constructor
+  ( public navCtrl: NavController,
+    public navParams: NavParams,
+    private AFauth : AngularFireAuth,
+    private afDB: AngularFireDatabase, 
+    private alertCtrl : AlertController, 
+    private store: Storage,
+    private camera: Camera, 
+    private afStore: AngularFireStorage, 
+    private firebase: Firebase, 
+    private firebaseApp : FirebaseApp,
+    public actionSheetCtrl: ActionSheetController,
+    public events: Events){
                 //initializeApp(FIREBASE_CONFIG);
                 this.store.get('state').then((val) => {
                   console.log(val);
@@ -170,8 +179,10 @@ logout(){
   this.store.set('email',null);
   this.store.set('password',null);
   this.store.set('state','unlogged');
+  this.events.publish('userloggedout');
+
   this.AFauth.auth.signOut().then(() => {
-    this.router.navigate(['']);
+    //this.router.navigate(['']);
  })
 }
 }

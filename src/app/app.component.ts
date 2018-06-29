@@ -1,5 +1,5 @@
 import { Component , ViewChild } from '@angular/core';
-import { Platform , Nav } from 'ionic-angular';
+import { Platform , Nav , Events} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -19,36 +19,45 @@ export class MyApp {
   rootPage:any = TabsPage;
   activePage:any
 
-  constructor(public platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
-        private store: Storage) {
-    this.activePage = "TabsPage";
-    // this.store.get('state').then((val) => {
-    //   console.log(val);
-    //   if( val != 'logged'){
-    //     this.pages = [
-    //       { title: 'Home', icon:'ios-home-outline', component: TabsPage },
-    //       { title: 'Other offers & deals', icon:'ios-basket-outline', component: PublicPage },
-    //       { title: 'Stores', icon:'ios-navigate-outline', component: StoresPage},
-    //       { title: 'Settings', icon:'ios-construct-outline', component: SettingsPage },
-    //     ];
-        
-    //   }else{
-    //     this.pages = [
-    //       { title: 'Home', icon:'ios-home-outline', component: TabsPage },
-    //       { title: 'Other offers & deals', icon:'ios-basket-outline', component: PublicPage },
-    //       { title: 'Stores', icon:'ios-navigate-outline', component: StoresPage},
-    //       { title: 'Login/Register', icon:'ios-at-outline', component: LoginPage },
-    //     ];
-    //   }}
-    // );
-    this.pages = [
-          { title: 'Home', icon:'ios-home-outline', component: TabsPage },
-          { title: 'Other offers & deals', icon:'ios-basket-outline', component: PublicPage },
-          { title: 'Stores', icon:'ios-navigate-outline', component: StoresPage},
-          { title: 'Login/Register', icon:'ios-at-outline', component: LoginPage },
-          { title: 'Settings', icon:'ios-construct-outline', component: SettingsPage },
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen,
+    public store: Storage , 
+    public events: Events) {
+    this.loggedIn = [
+        { title: 'Home', icon:'ios-home-outline', component: TabsPage },
+        { title: 'Other offers & deals', icon:'ios-basket-outline', component: PublicPage },
+        { title: 'Stores', icon:'ios-navigate-outline', component: StoresPage},
+        { title: 'Settings', icon:'ios-construct-outline', component: SettingsPage },
+      ];
+    this.loggedOut = [
+        { title: 'Home', icon:'ios-home-outline', component: TabsPage },
+        { title: 'Other offers & deals', icon:'ios-basket-outline', component: PublicPage },
+        { title: 'Stores', icon:'ios-navigate-outline', component: StoresPage},
+        { title: 'Login/Register', icon:'ios-at-outline', component: LoginPage },
+      ];
+      this.activePage = "TabsPage";
+      this.events.subscribe('userloggedin', (user, time) => {
+        this.pages = this.loggedIn
+        // user and time are the same arguments passed in `events.publish(user, time)`
+        console.log('Welcome', user, 'at', time, this.loggedIn);
+    });
+    this.events.subscribe('userloggedout', (user, time) => {
+      this.pages = this.loggedOut
+      // user and time are the same arguments passed in `events.publish(user, time)`
+      console.log('Welcome', user, 'at', time, this.loggedIn);
+  })
+    this.store.get('state').then((val) => {
+      console.log(val);
+      if( val != 'logged'){
+        this.pages = this.loggedOut
+      }else{
+        this.pages = this.loggedIn
+      }}
+    );
 
-          ];
+
 // ===========================SPLASHSCREEN==================================
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -58,6 +67,7 @@ export class MyApp {
     });
 // =========================================================================
 }
+
 //+++++++++++++++++++++++++CONSTRUCTOR++END++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   open(page){
