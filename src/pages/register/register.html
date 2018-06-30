@@ -65,6 +65,38 @@
             </ion-item>
           </ion-col>
       </ion-row>
+      <ion-row justify-content-center padding>
+        <ion-col>
+            <ion-item class="input">
+              <ion-label color="primary" stacked>Phone number</ion-label>
+              <ion-input type="tel" placeholder="Your phone number" [(ngModel)]="profile.number" name="number" required></ion-input>
+            </ion-item>
+          </ion-col>
+      </ion-row>
+      <ion-row justify-content-center padding>
+        <ion-col>
+            <ion-item class="input">
+              <ion-label color="primary" stacked>Address 1</ion-label>
+              <ion-input type="text" placeholder="Street/Area" [(ngModel)]="profile.address1" name="address1" required></ion-input>
+            </ion-item>
+          </ion-col>
+      </ion-row>
+      <ion-row justify-content-center padding>
+        <ion-col>
+            <ion-item class="input">
+              <ion-label color="primary" stacked>Address 2</ion-label>
+              <ion-input type="text" placeholder="Town/City" [(ngModel)]="profile.address2" name="address2" required></ion-input>
+            </ion-item>
+          </ion-col>
+      </ion-row>
+      <ion-row justify-content-center padding>
+        <ion-col>
+            <ion-item class="input">
+              <ion-label color="primary" stacked>Address 3</ion-label>
+              <ion-input type="text" placeholder="Country" [(ngModel)]="profile.address3" name="address3" required></ion-input>
+            </ion-item>
+          </ion-col>
+      </ion-row>
       <br>
       <ion-row justify-content-center >
           <button ion-button  type="submit" round color="white"><p  class="button-content" required>Submit<p></button>

@@ -6,6 +6,7 @@ import {  FirebaseListObservable } from "angularfire2/database-deprecated";
 import { Storage } from '@ionic/storage';
 import{ Profile } from '../../../models/details'
 
+
 /**
  * Generated class for the ProfilePage page.
  *
@@ -25,7 +26,7 @@ export class ProfilePage {
   address2: string = this.navParams.get('address2');
   address3: string = this.navParams.get('address3');
   number: string = this.navParams.get('number');
-
+  level: number = this.navParams.get('level')
   
   // profile: FirebaseListObservable<Profile[]>;
   uid: any
@@ -39,6 +40,7 @@ export class ProfilePage {
       this.profile.address1 = this.address1
       this.profile.address2 = this.address2
       this.profile.address3 = this.address3
+      this.profile.level = this.level
 
   }
 

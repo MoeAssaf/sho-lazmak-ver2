@@ -10,6 +10,7 @@ import { LoginPage } from "../pages/login/login"
 import { PublicPage } from '../pages/public/public';
 import { SettingsPage } from '../pages/settings/settings';
 import { Storage } from '@ionic/storage';
+import { OfferPage } from '../pages/offer/offer';
 @Component({
   templateUrl: 'app.html'
 })
@@ -18,7 +19,8 @@ export class MyApp {
   pages: Array<{ title: string, icon:string , component:any}>;
   rootPage:any = TabsPage;
   activePage:any
-
+loggedIn: any
+loggedOut: any
   constructor(
     public platform: Platform,
     public statusBar: StatusBar, 
@@ -29,7 +31,9 @@ export class MyApp {
         { title: 'Home', icon:'ios-home-outline', component: TabsPage },
         { title: 'Other offers & deals', icon:'ios-basket-outline', component: PublicPage },
         { title: 'Stores', icon:'ios-navigate-outline', component: StoresPage},
-        { title: 'Settings', icon:'ios-construct-outline', component: SettingsPage },
+        { title: 'My offers & deals', icon: 'ios-add-outline', component: OfferPage},
+        { title: 'Settings', icon:'ios-construct-outline', component: SettingsPage }
+       
       ];
     this.loggedOut = [
         { title: 'Home', icon:'ios-home-outline', component: TabsPage },

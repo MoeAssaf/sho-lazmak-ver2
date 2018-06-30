@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
+
 import { Geolocation } from '@ionic-native/geolocation';
 import { Keyboard } from '@ionic-native/keyboard'
 import { HttpModule } from '@angular/http';
@@ -29,7 +30,7 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorage } from 'angularfire2/storage';
-
+import { OfferPage, Product } from '../pages/offer/offer';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,9 @@ import { AngularFireStorage } from 'angularfire2/storage';
     RegisterPage,
     PublicPage,
     SettingsPage,
-    ProfilePage
+    ProfilePage,
+    OfferPage,
+    Product
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -69,7 +72,10 @@ import { AngularFireStorage } from 'angularfire2/storage';
     PublicPage,
     SettingsPage,
     RegisterPage,
-    ProfilePage
+    ProfilePage,
+    OfferPage,
+    Product
+    
 
   ],
   providers: [

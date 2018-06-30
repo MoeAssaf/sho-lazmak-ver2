@@ -1,0 +1,33 @@
+page-offer {
+    .row{
+        margin-top: 10px
+    }
+    .name{
+        color: map-get($colors, primary )
+    }
+    .h6{
+        color: map-get($colors, primary );
+        
+
+    }
+    .picture{
+        background-color: map-get($colors, light);
+        width:120px;
+        height: 120px;
+        // clip: rect(0px,120px,120px,0px);      
+        border-radius: 50%;
+        margin: auto;
+        overflow: hidden;
+        
+    }
+    ion-icon {
+        font-size: 20px; //Preferred size here
+    }
+    .button-content{
+        color: map-get($colors, primary );
+        text-decoration: underline
+    }
+    // .scroll-refresher .ionic-refresher-content.ionic-refresher-with-text{
+    //     color :map-get($colors, primary);
+    //   }
+}

@@ -22,10 +22,12 @@ import { Storage } from '@ionic/storage';
 })
 export class RegisterPage {
   profile = {} as Profile;
+  
   todo = {password1:"",password2:"",name:"",surname:"",email:""};
   constructor( private AFauth : AngularFireAuth,
     public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private afDB: AngularFireDatabase,
     private store: Storage) {
+      this.profile.level = 1;
   }
 
   ionViewDidLoad() {
@@ -41,6 +43,10 @@ export class RegisterPage {
 
     if( this.profile.name == null || this.profile.name == "" ||
    this.profile.surname == null || this.profile.surname == "" ||
+   this.profile.address1 == null || this.profile.address1 == "" ||
+   this.profile.address2 == null || this.profile.address2 == "" ||
+   this.profile.address3 == null || this.profile.address3 == "" ||
+
    field.email == null || field.email == "" ||
    field.password1 == null || field.password1 == "" ||
    field.password2 == null || field.password2 == ""){

@@ -31,12 +31,12 @@
   <ion-grid>
     <ion-row  align-items-center	text-center> 
       <button (click)="openForm()" round ion-button clear color="primary" ><ion-icon name="md-create"></ion-icon></button>
-      <h1 class="name">{{profile.name}} {{profile.surname}}</h1>
+      <h1 (click)="openForm()"  class="name">{{profile.name}} {{profile.surname}}</h1>
     </ion-row>
     <ion-row justify-content-center	>
-      <ion-col *ngIf="profile_picture" align-self-center>
-        <ion-avatar class="picture" >
-        <img (click)="presentActionSheet()" 
+      <ion-col  align-self-center>
+        <ion-avatar class="picture" (click)="presentActionSheet()" >
+        <img  
         [src]="profile_picture" >
       </ion-avatar>
 

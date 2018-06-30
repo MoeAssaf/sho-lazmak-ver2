@@ -1,6 +1,6 @@
+
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-
 /**
  * Generated class for the PublicPage tabs.
  *
@@ -19,6 +19,6 @@ export class PublicPage {
   unusedRoot = 'UnusedPage'
 
 
-  constructor(public navCtrl: NavController) {}
+  constructor() {}
 
 }

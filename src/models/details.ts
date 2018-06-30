@@ -2,7 +2,7 @@ export interface Profile{
   name: string;
   surname: string;
   email: string
-  level: 1;
+  level: number;
   number: string;
   address1: string;
   address2: string;

@@ -1,0 +1,126 @@
+<ion-header>
+    <ion-navbar  color="primary" class="navbar" >
+      <button (click)="dismiss()" color="white" ion-button clear>Cancel</button>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-card style="border-radius: 15px" padding *ngIf="ready" > 
+
+        <ion-grid>
+          <ion-row  align-items-center	text-center> 
+            <button (click)="openForm()" round ion-button clear color="primary" ><ion-icon name="md-create"></ion-icon></button>
+            <h1 (click)="openForm()"  class="name">{{profile.name}} {{profile.surname}}</h1>
+          </ion-row>
+          <!-- <ion-row justify-content-center	>
+            <ion-col  align-self-center>
+              <ion-avatar class="picture" (click)="presentActionSheet()" >
+              <img  
+              [src]="profile_picture" >
+            </ion-avatar>
+      
+            </ion-col>
+          </ion-row> -->
+          <ion-row margin  align-items-end nopadding	style="margin-bottom: 0px;padding-bottom:0px">
+              <ion-col  align-self-start	 >
+            <h6 class="h6">Email:</h6>
+            <h6 class="h6">Number:</h6>
+            <h6 class="h6">Address1:</h6>
+            <h6 class="h6">Address2:</h6>
+            <h6 class="h6">Address3:</h6>
+                </ion-col>
+            <ion-col align-self-start	 style="margin-right: 0px !important" >
+              <h6 class="h6" style="    text-decoration: underline;">{{email}}</h6>
+              <h6 class="h6">{{profile.number}}</h6>
+              <h6 class="h6">{{profile.address1}}</h6>
+              <h6 class="h6">{{profile.address2}}</h6>
+              <h6 class="h6">{{profile.address3}}</h6>
+                  </ion-col>
+          </ion-row>
+          <br>
+          <br>
+          <br>
+ 
+        </ion-grid>
+      </ion-card>
+      <ion-card style="border-radius: 15px" padding *ngIf="ready">
+        <ion-grid style="padding:0px;height:100%;" >
+          <br>
+          <br>
+          <br>
+          <ion-row justify-content-center>
+            <ion-col text-center >
+              <h1 class="name">Specify details</h1>
+            </ion-col>
+          </ion-row>
+          <!-- <ion-img [width]="150" [height]="150" src="images/logo.png" ></ion-img> -->
+          <br>
+      
+          <!-- THIS IS  THE FORM  -->
+          <form (ngSubmit)="logForm()">
+          <ion-row justify-content-center >
+            <ion-col>
+                <ion-item class="input">
+                  <ion-label color="primary" stacked>Product's name</ion-label>
+                  <ion-input type="text" placeholder="What are you selling?" [(ngModel)]="product.name" name="name" required></ion-input>
+                </ion-item>
+              </ion-col>
+          </ion-row>
+          <ion-row justify-content-center >
+              <ion-col>
+                  <ion-item class="input">
+                    <ion-label color="primary" stacked>Description:</ion-label>
+                    <ion-textarea type="text" placeholder="Provide information about this product?" [(ngModel)]="product.info" name="info" required></ion-textarea>
+                  </ion-item>
+                </ion-col>
+            </ion-row>
+          <ion-row justify-content-center >
+            <ion-col>
+                <ion-item class="input">
+                  <ion-label color="primary" stacked>Product's price</ion-label>
+                  <ion-input type="number" placeholder="How much?" [(ngModel)]="product.price" name="name" required></ion-input>
+                </ion-item>
+              </ion-col>
+          </ion-row>
+
+          <ion-row justify-content-center >
+            <ion-col>
+              <ion-item class ="input">
+                <ion-label color="primary" stacked>Category</ion-label>
+                <ion-select [(ngModel)]="product.category" name="category">
+                  <ion-option value="smartphones">Smart Phones</ion-option>
+                  <ion-option value="sports">Sports</ion-option>
+                  <ion-option value="fashion">Fashion</ion-option>
+                  <ion-option value="health">Body and health</ion-option>
+                  <ion-option value="electronics">Computers and Electronics</ion-option>
+                  <ion-option value="other">Other</ion-option>
+
+                </ion-select>
+              </ion-item>
+              </ion-col>
+          </ion-row> 
+          <ion-row justify-content-center >
+            <ion-col text-center>
+              <!-- <ion-item> -->
+                  <ion-label color="primary" stacked>Product's current state?</ion-label>
+                  <ion-segment [(ngModel)]="profile.state" name="state"color="primary">
+                    <ion-segment-button value="used">
+                      Used
+                    </ion-segment-button>
+                    <ion-segment-button value="unused">
+                      Unused
+                    </ion-segment-button>
+                  </ion-segment>
+                  <!-- </ion-item> -->
+              </ion-col>
+          </ion-row>       
+          </form>
+    
+          <ion-row justify-content-center >
+            <button (click)="addProduct()" ion-button outline round  color="primary"><p  class="button-content" >Submit<p></button>
+        </ion-row>
+        </ion-grid>
+      </ion-card>
+      
+      </ion-content>
+      

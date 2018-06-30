@@ -7,7 +7,7 @@ import {  FirebaseListObservable } from "angularfire2/database-deprecated";
 import { Camera , CameraOptions} from "@ionic-native/camera";
 import { storage , initializeApp } from 'firebase';
 import  { FirebaseApp } from 'angularfire2';
-
+import { AngularFireList } from 'angularfire2/database';
 
 import{ Profile } from '../../models/details'
 import { LoginPage } from '../login/login';
@@ -34,7 +34,8 @@ import { ProfilePage } from './profile/profile'
 })
 export class SettingsPage {
   // profile = {} as Profile
-  profile: FirebaseListObservable<Profile[]>;
+  //profile: AngularFireList<Profile[]>;
+  profile: any
   uid: any
   email: any
   ready: boolean
@@ -72,9 +73,11 @@ export class SettingsPage {
   //    //etc...
   //   }
   async grabProfile(){
+    try{
     const result = await this.AFauth.authState.subscribe(data => {
       this.uid = data.uid;
       this.email = data.email;
+     
       console.log(data);
       console.log(this.email);
       console.log(this.uid);
@@ -83,9 +86,13 @@ export class SettingsPage {
                                     this.profile = data;
                                     this.ready = true;
                                     this.getProfileImageUrl();
+                                   
                                                   });
 
-   })
+   })}
+   catch(e){
+     this.logout()
+   }
   }
   openForm(){
     this.navCtrl.push(ProfilePage, this.profile );
@@ -117,10 +124,14 @@ export class SettingsPage {
   }
   //`${this.uid}/profile_picture/image`
   getProfileImageUrl() {
+    try {
     const storageRef = this.firebaseApp.storage().ref().child(`${this.uid}/profile_picture/image`);
     storageRef.getDownloadURL().then(url => {this.profile_picture = url;
       console.log('Picture link',this.profile_picture)
-    });
+    });}
+    catch(e){
+      console.log(e)
+    }
   }
   addPhoto(){
     this.takePhoto()
@@ -175,7 +186,7 @@ presentActionSheet() {
   actionSheet.present();
 }
 logout(){
-  this.navCtrl.setRoot(TabsPage)
+  this.navCtrl.setRoot(LoginPage)
   this.store.set('email',null);
   this.store.set('password',null);
   this.store.set('state','unlogged');

@@ -17,12 +17,12 @@ export class HomePage {
       {picture: 'https://i.imgur.com/Pm5MVMZ.jpg'},
     ];
     this.buttons = [
-      {icon:'phone-portrait',content:'Smart Phones',category:'Smart Phones',link:'SmartPhones'},
-      {icon:'football',content:'Sports',category:'Sports',link:'Sports'},
-      {icon:'shirt',content:'Fashion',category:'Fashion',link:'Fashion'},
-      {icon:'heart',content:'Body & health',category:'Body & health',link:'BodyAndHealth'},
-      {icon:'desktop',content:'Computers and Electronics',category:'Computers and Electronics',link:'ComputersAndElectronics'},
-      {icon:'ios-more',content:'Other',category:'Other',link:'Other'},
+      {icon:'phone-portrait',content:'Smart Phones',category:'Smart Phones',link:'smartphones'},
+      {icon:'football',content:'Sports',category:'Sports',link:'sports'},
+      {icon:'shirt',content:'Fashion',category:'Fashion',link:'fashion'},
+      {icon:'heart',content:'Body & health',category:'Body & health',link:'health'},
+      {icon:'desktop',content:'Computers and Electronics',category:'Computers and Electronics',link:'electronics'},
+      {icon:'ios-more',content:'Other',category:'Other',link:'other'},
     ]
   }
 
