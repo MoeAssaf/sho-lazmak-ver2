@@ -14,6 +14,7 @@ import{ Profile } from '../../models/details'
 import { Firebase } from '@ionic-native/firebase';
 import { Storage } from '@ionic/storage';
 import { ProfilePage } from '../settings/profile/profile';
+import { Observable } from 'rxjs';
 /**
  * Generated class for the OfferPage page.
  *
@@ -30,6 +31,15 @@ export class OfferPage {
   uid: any
   email: any
   profile: any
+  prodcuts: any
+  product: any
+  other: any;
+  electronics: any;
+  smartphones: any;
+  health: any;
+  fashion: any;
+  sports: any;
+
     constructor
   ( public navCtrl: NavController,
     public navParams: NavParams,
@@ -43,6 +53,7 @@ export class OfferPage {
     private firebaseApp : FirebaseApp,
     public actionSheetCtrl: ActionSheetController,
     public modalCtrl: ModalController) {
+      this.grabProfile()
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad OfferPage');
@@ -51,7 +62,37 @@ export class OfferPage {
     let profileModal = this.modalCtrl.create(Product);
     profileModal.present();
   }
+  async getOffers(){
+      var path1 = ('public_product/'+ `${this.uid}`);
+      console.log(path1)
+      this.prodcuts = this.afDB.object(path1).valueChanges().subscribe(data=>
+      {
+    console.log(data)
+      const array = Object.keys(data).map(i => data[i]);
+      this.prodcuts = array
+      console.log('Final array',array);
+   
+    })
+  }
 
+  async grabProfile(){
+   
+    const result = await this.AFauth.authState.subscribe(data => {
+      this.uid = data.uid;
+      this.email = data.email;
+      console.log(data);
+      console.log(this.email);
+      console.log(this.uid);
+       this.profile = this.afDB.object(`profile/${this.uid}`).valueChanges();
+                 this.profile.subscribe(data => {console.log('Grabbed profile', data);
+                                    this.profile = data;
+                                    this.getOffers()
+
+                                    //this.getProfileImageUrl();
+                                                  });
+  
+   })
+  }
 }
 @Component({
   templateUrl: 'product.html',
@@ -117,8 +158,9 @@ logForm(){
   }
 }
 addProduct(){
-  this.AFauth.authState.take(1).subscribe(auth =>{
-  this.afDB.list(`public_product/${this.product.category}/${auth.uid}`).push(this.product).then((data) => {
+  this.AFauth.authState.subscribe(auth =>{
+  this.afDB.list(`public_product/${auth.uid}`).push(this.product).then((data) => {
+    this.product.picture = `public_product/${auth.uid}/${data.key}/image`;
     this.uploadPhoto(`public_product/${auth.uid}/${data.key}/image`)
 
 } )

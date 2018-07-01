@@ -89,7 +89,8 @@ export class RegisterPage {
 
   }
   createProfile(email, password){
-    this.AFauth.authState.take(1).subscribe(auth =>{
+    //hi
+    this.AFauth.authState.subscribe(auth =>{
       this.afDB.object(`profile/${auth.uid}`).set(this.profile).then(() => {
         this.store.set('email',email);
         this.store.set('password',password);

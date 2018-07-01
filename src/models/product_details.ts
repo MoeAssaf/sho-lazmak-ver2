@@ -4,6 +4,7 @@ export interface Product_details{
     state: string;
     category: string;
     info: string;
+    picture: string
 
     
   }
