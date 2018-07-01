@@ -53,7 +53,6 @@
               <h1 class="name">Specify details</h1>
             </ion-col>
           </ion-row>
-          <!-- <ion-img [width]="150" [height]="150" src="images/logo.png" ></ion-img> -->
           <br>
       
           <!-- THIS IS  THE FORM  -->
@@ -103,7 +102,7 @@
             <ion-col text-center>
               <!-- <ion-item> -->
                   <ion-label color="primary" stacked>Product's current state?</ion-label>
-                  <ion-segment [(ngModel)]="profile.state" name="state"color="primary">
+                  <ion-segment [(ngModel)]="product.state" name="state"color="primary">
                     <ion-segment-button value="used">
                       Used
                     </ion-segment-button>
@@ -113,11 +112,22 @@
                   </ion-segment>
                   <!-- </ion-item> -->
               </ion-col>
-          </ion-row>       
+          </ion-row>   
+          <ion-row justify-content-center	>
+
+              <ion-col text-center align-self-center>
+                  <ion-label color="primary" stacked>Please add a picture of the porduct</ion-label>
+                <br>
+                <ion-avatar class="picture" (click)="presentActionSheet()" >
+                <img [src]="image" alt="">
+              </ion-avatar>
+        
+              </ion-col>
+            </ion-row>    
           </form>
     
           <ion-row justify-content-center >
-            <button (click)="addProduct()" ion-button outline round  color="primary"><p  class="button-content" >Submit<p></button>
+            <button (click)="logForm()" ion-button outline round  color="primary"><p  class="button-content" >Submit<p></button>
         </ion-row>
         </ion-grid>
       </ion-card>
