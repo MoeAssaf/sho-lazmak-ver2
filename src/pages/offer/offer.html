@@ -12,19 +12,22 @@
 </ion-header>
 
 <ion-content padding>
+  
   <ion-card *ngFor="let element of products">
     <ion-grid >
-        <ion-col text-center align-self-center>
-            <ion-label color="primary" stacked>Please add a picture of the porduct</ion-label>
+      <ion-row>
+        <ion-col align-self-left>
+            <!-- <ion-label color="primary" stacked></ion-label> -->
           <br>
-          <ion-avatar class="picture"  >
-          <img [src]="" alt="">
+          <ion-avatar class="picture" style="width:25px;height:25px;"  >
+          <img [src]="getProfileImageUrl(element.picture)" alt="">
         </ion-avatar>
   
         </ion-col>
+      </ion-row>
     </ion-grid>
   </ion-card>
-<ion-footer text-center>
-  <button (click)="presentProfileModal()" margin ion-button round><ion-icon name="md-add"></ion-icon> &nbsp; Add offer!</button>
-</ion-footer>
+  <ion-fab  bottom right margin >
+      <button (click)="presentProfileModal()" ion-fab round><ion-icon name="md-add"></ion-icon></button>
+    </ion-fab>
 </ion-content>

@@ -10,7 +10,6 @@ import { Geolocation } from '@ionic-native/geolocation';
  */
 
  declare var google: any;
-@IonicPage()
 @Component({
   selector: 'page-nearby',
   templateUrl: 'nearby.html',

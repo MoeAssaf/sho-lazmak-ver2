@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , AlertController} from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
-import {  FirebaseListObservable } from "angularfire2/database-deprecated";
 import { TabsPage } from '../tabs/tabs';
 import{ Profile } from '../../models/details';import { LoginPage } from '../login/login';
 
@@ -78,6 +77,7 @@ export class RegisterPage {
     try{
       const result = await this.AFauth.auth.createUserWithEmailAndPassword(field.email, field.password1);
       console.log(result);
+      field.email = field.email.replace(/\s/g,'');
       this.createProfile(field.email,field.password1);
      this.navCtrl.setRoot(TabsPage);
     }

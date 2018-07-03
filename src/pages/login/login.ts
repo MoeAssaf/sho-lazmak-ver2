@@ -1,15 +1,12 @@
 
 import { Component } from '@angular/core';
-import { NavController , AlertController , Platform, Events} from 'ionic-angular';
+import { NavController , AlertController , Events, IonicPage} from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Keyboard } from '@ionic-native/keyboard';
-import { StatusBar } from '@ionic-native/status-bar';
 import { Storage } from '@ionic/storage';
 import { RegisterPage } from '../register/register';
 import { TabsPage } from '../tabs/tabs';
 
-// import { RegisterPage } from '../register/register';
-
+@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -21,20 +18,14 @@ export class LoginPage {
     private AFauth : AngularFireAuth,
     public navCtrl: NavController,
       private alertCtrl: AlertController,
-      private platform: Platform,
-      private keyboard : Keyboard,
-      private stBar:StatusBar,
       private storage: Storage,
       public events: Events) {
-    platform.ready().then(() => {
-      // keeps keyboard from pushing the contents
-      this.keyboard.disableScroll(true);
-      this.stBar.styleDefault();
-    });
+ 
     this.autoLogin()
   
 }
 autoLogin(){
+  //check if user is logged in
   this.storage.get('state').then((val) => {
       console.log(val);
       if( val == 'logged'){

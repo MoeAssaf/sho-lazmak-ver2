@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams , AlertController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth} from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
-import {  FirebaseListObservable } from "angularfire2/database-deprecated";
-import { Storage } from '@ionic/storage';
 import{ Profile } from '../../../models/details'
 
 
@@ -32,7 +30,7 @@ export class ProfilePage {
   uid: any
   profile: Profile;
   constructor(public navCtrl: NavController, public navParams: NavParams,private AFauth : AngularFireAuth,
-    private afDB: AngularFireDatabase, private alertCtrl : AlertController, private storage: Storage)  {
+    private afDB: AngularFireDatabase)  {
       this.profile = {} as Profile
       this.profile.name = this.name
       this.profile.number = this.number

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ProductsPage } from "../products/products"
+import { ProductsPage } from "../products/products";
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-main',
+  templateUrl: 'main.html'
 })
-export class HomePage {
+export class MainPage {
 
   pictures: any;
   buttons: any;

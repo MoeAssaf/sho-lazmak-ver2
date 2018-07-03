@@ -2,21 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , AlertController, ActionSheetController, Events} from 'ionic-angular';
 import { AngularFireAuth} from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireStorage } from "angularfire2/storage";
-import {  FirebaseListObservable } from "angularfire2/database-deprecated";
 import { Camera , CameraOptions} from "@ionic-native/camera";
-import { storage , initializeApp } from 'firebase';
+import { storage  } from 'firebase';
 import  { FirebaseApp } from 'angularfire2';
-import { AngularFireList } from 'angularfire2/database';
 
-import{ Profile } from '../../models/details'
 import { LoginPage } from '../login/login';
-import { TabsPage } from "../tabs/tabs";
-
-import { FIREBASE_CONFIG } from '../../app/app.firebase.config';
-import { Firebase } from '@ionic-native/firebase';
-import "rxjs/add/operator/filter";
-import "rxjs/add/operator/first";
 
 import { Storage } from '@ionic/storage';
 import { ProfilePage } from './profile/profile'
@@ -48,8 +38,6 @@ export class SettingsPage {
     private alertCtrl : AlertController, 
     private store: Storage,
     private camera: Camera, 
-    private afStore: AngularFireStorage, 
-    private firebase: Firebase, 
     private firebaseApp : FirebaseApp,
     public actionSheetCtrl: ActionSheetController,
     public events: Events){

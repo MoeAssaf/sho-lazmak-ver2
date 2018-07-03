@@ -1,17 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , AlertController, ActionSheetController} from 'ionic-angular';
 import { AngularFireAuth} from 'angularfire2/auth';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { AngularFireStorage } from "angularfire2/storage";
-import {  FirebaseListObservable } from "angularfire2/database-deprecated";
-import { Camera , CameraOptions} from "@ionic-native/camera";
-import { storage , initializeApp } from 'firebase';
-import  { FirebaseApp } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 
-import{ Profile } from '../../../models/details'
-import { Firebase } from '@ionic-native/firebase';
-import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -27,12 +19,6 @@ export class UsedPage {
     public navParams: NavParams,
     private AFauth : AngularFireAuth,
     private afDB: AngularFireDatabase, 
-    private alertCtrl : AlertController, 
-    private store: Storage,
-    private camera: Camera, 
-    private afStore: AngularFireStorage, 
-    private firebase: Firebase, 
-    private firebaseApp : FirebaseApp,
     public actionSheetCtrl: ActionSheetController) {
     this.grabProfile()
   }

@@ -4,12 +4,11 @@ import { OfferPage } from './offer';
 import { Product } from './offer';
 @NgModule({
   declarations: [
-    OfferPage,
-    Product
+    OfferPage
+    
   ],
   imports: [
     IonicPageModule.forChild(OfferPage),
-    IonicPageModule.forChild(Product),
 
   ],
 })

@@ -1,14 +1,13 @@
+import { MainPage } from './../pages/main/main';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
 
 import { Geolocation } from '@ionic-native/geolocation';
-import { Keyboard } from '@ionic-native/keyboard'
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { IonicStorageModule } from '@ionic/storage';
@@ -25,7 +24,6 @@ import { PublicPage } from '../pages/public/public';
 import { SettingsPage } from '../pages/settings/settings'
 import { ProfilePage } from '../pages/settings/profile/profile'
 
-import { Firebase } from '@ionic-native/firebase';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -35,10 +33,8 @@ import { OfferPage, Product } from '../pages/offer/offer';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     TabsPage,
     ProductsPage,
-    NearbyPage,
     StoresPage,
     LoginPage,
     RegisterPage,
@@ -46,7 +42,10 @@ import { OfferPage, Product } from '../pages/offer/offer';
     SettingsPage,
     ProfilePage,
     OfferPage,
-    Product
+    Product,
+    MainPage,
+    NearbyPage
+    
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -63,10 +62,8 @@ import { OfferPage, Product } from '../pages/offer/offer';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     TabsPage,
     ProductsPage,
-    NearbyPage,
     StoresPage,
     LoginPage,
     PublicPage,
@@ -74,7 +71,10 @@ import { OfferPage, Product } from '../pages/offer/offer';
     RegisterPage,
     ProfilePage,
     OfferPage,
-    Product
+    Product,
+    MainPage,
+    NearbyPage
+    
     
 
   ],
@@ -82,11 +82,9 @@ import { OfferPage, Product } from '../pages/offer/offer';
     StatusBar,
     SplashScreen,
     Geolocation,
-    Keyboard,
     AngularFireAuth,
     AngularFireStorage,
     Camera,
-    Firebase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
