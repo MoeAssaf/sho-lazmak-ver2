@@ -28,6 +28,9 @@ page-offer {
         color: map-get($colors, primary );
         text-decoration: underline
     }
+    .info{
+        color: grey
+    }
     // .scroll-refresher .ionic-refresher-content.ionic-refresher-with-text{
     //     color :map-get($colors, primary);
     //   }

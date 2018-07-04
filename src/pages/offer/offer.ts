@@ -43,7 +43,6 @@ export class OfferPage {
     private afDB: AngularFireDatabase, 
     public actionSheetCtrl: ActionSheetController,
     public modalCtrl: ModalController,
-    private firebaseApp : FirebaseApp,
   ) {
       this.grabProfile()
   }
@@ -70,23 +69,11 @@ export class OfferPage {
     let keys = Object.keys(data);
     var i;
     for (i = 0; i < keys.length; i++) { 
-      // array[i].picture = this.getProfileImageUrl(`public_products/${keys[i]}`);
-      array[i].picture = `public_products/${keys[i]}`;
       array[i].id = `${keys[i]}`;
       return array
 }
   }
-  async getProfileImageUrl(path) {
-    try {
-    const storageRef = await this.firebaseApp.storage().ref().child(`${this.uid}/profile_picture/image`);
-    storageRef.getDownloadURL().then(url => {path = url;
-      console.log('Picture link',path)
-      return path
-    });}
-    catch(e){
-      console.log(e)
-    }
-  }
+
   async grabProfile(){
    
      await this.AFauth.authState.subscribe(data => {
@@ -119,6 +106,7 @@ export class Product {
   image: any
   product= {} as Product_details
   products: any
+  picture_key: string;
   constructor
   ( public navCtrl: NavController,
     public navParams: NavParams,
@@ -127,9 +115,12 @@ export class Product {
     private alertCtrl : AlertController, 
     private camera: Camera, 
     public actionSheetCtrl: ActionSheetController,
-    public viewCtrl: ViewController) {
+    public viewCtrl: ViewController,
+    private firebaseApp : FirebaseApp)
+    {
     this.grabProfile()
   }
+  //get profile data
  async grabProfile(){
    
   const result = await this.AFauth.authState.subscribe(data => {
@@ -147,9 +138,7 @@ export class Product {
 
  })
 }
-dismiss() {
-  this.viewCtrl.dismiss();
-}
+// check form stuff
 logForm(){
   if(this.product.name == null || this.product.name == ""||
   this.product.info == null || this.product.info == ""||
@@ -163,21 +152,42 @@ logForm(){
     this.alert('Please add a picture by tapping the grey space!')
   }
   else{
-    this.addProduct()
+   this.picture_key = this.generateKey();
+    this.uploadPhoto(`public_product/${this.uid}/${this.picture_key}/image`)
+
   }
 }
-addProduct(){
+generateKey(){
+  return '_' + Math.random().toString(36).substr(2, 9);
+}
+async getProfileImageUrl(path) {
+  try {
+  const storageRef = await this.firebaseApp.storage().ref().child(path);
+  storageRef.getDownloadURL().then(url => {path = url;
+    console.log('Picture link',path);
+    this.addProduct(url)
+
+    return path
+  });}
+  catch(e){
+    console.log(e)
+  }
+}
+//upload the product data
+addProduct(path){
+  this.product.owner = this.uid
+  this.product.picture = path;
+  this.product.id = this.picture_key
   this.AFauth.authState.subscribe(auth =>{
-  this.afDB.list(`public_product/${auth.uid}`).push(this.product).then((data) => {
-    this.product.picture = `public_product/${auth.uid}/${data.key}/image`;
-    this.uploadPhoto(`public_product/${auth.uid}/${data.key}/image`)
+  this.afDB.object(`public_product/${auth.uid}/${this.picture_key}`).set(this.product).then((data) => {
+    this.navCtrl.setRoot(OfferPage);
 
 } )
   }
 )
 }
 openForm(){
-  this.navCtrl.push(ProfilePage)
+  this.navCtrl.push(ProfilePage, this.profile)
 }
 presentActionSheet() {
   let actionSheet = this.actionSheetCtrl.create({
@@ -212,7 +222,7 @@ presentActionSheet() {
 async addPhoto(){
   try {
   const options: CameraOptions = {
-    quality: 50,
+    quality: 100,
     targetHeight: 600,
     targetWidth: 600,
     destinationType: this.camera.DestinationType.DATA_URL,
@@ -232,8 +242,8 @@ catch(e){
 async uploadPhoto(path){
 try{
 const pictures = storage().ref(path);
-pictures.putString(this.image, 'data_url');
-this.navCtrl.setRoot(OfferPage)
+pictures.putString(this.image, 'data_url').then(data=>this.getProfileImageUrl(path)
+);
 }
 catch(e){
 this.alert('An error occured please try again!')}
