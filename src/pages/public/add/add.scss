@@ -1,0 +1,59 @@
+page-add {
+    .row{
+        margin-top: 10px
+    }
+    .name{
+        color: map-get($colors, primary );
+        margin: auto
+    }
+    .h6{
+        color: map-get($colors, primary );
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+    }
+    .picture{
+        background-color: map-get($colors, light);
+        width:120px;
+        height: 120px;
+        // clip: rect(0px,120px,120px,0px);      
+        border-radius: 50%;
+        margin: auto;
+        overflow: hidden;
+        
+    }
+    ion-icon {
+        font-size: 20px; //Preferred size here
+    }
+    .button-content{
+        color: map-get($colors, primary );
+        text-decoration: underline
+    }
+    .footer{
+        margin-bottom: 0px;
+        width: 100%
+        // background-color: map-get($colors, primary )
+    }
+    .col{
+        margin:auto
+    }
+     
+    .picture{
+        background-color: map-get($colors, light);
+        width:250px;
+        height: 250px;
+        // clip: rect(0px,120px,120px,0px);      
+        border-radius: 15px;
+        margin: auto;
+        overflow: hidden;
+        
+    }
+    .info{
+        color: grey
+    }
+    .button-content{
+        color: map-get($colors, primary );
+        text-decoration: underline
+    }
+}

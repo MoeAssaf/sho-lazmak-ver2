@@ -86,7 +86,7 @@ export class SettingsPage {
     this.navCtrl.push(ProfilePage, this.profile );
 
   }
-  async takePhoto(){
+  async takePhoto(sourceType:number){
     try {
     const options: CameraOptions = {
       quality: 50,
@@ -95,7 +95,8 @@ export class SettingsPage {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation: true
+      correctOrientation: true,
+      sourceType: sourceType
     };
     const result = await this.camera.getPicture(options);
 
@@ -121,9 +122,7 @@ export class SettingsPage {
       console.log(e)
     }
   }
-  addPhoto(){
-    this.takePhoto()
-  }
+ 
   alert(comment){
     console.log(comment);
     let ALERT = this.alertCtrl.create({
@@ -157,7 +156,14 @@ presentActionSheet() {
       {
         text: 'Take photo',
         handler: () => {
-          this.addPhoto();
+          this.takePhoto(1);
+          console.log('Archive clicked');
+        }
+      },
+      {
+        text: 'Choose from library',
+        handler: () => {
+          this.takePhoto(0);
           console.log('Archive clicked');
         }
       },

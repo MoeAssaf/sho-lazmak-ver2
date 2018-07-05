@@ -13,7 +13,7 @@
 
 <ion-content padding>
   <span *ngIf="products"> 
-  <ion-card *ngFor="let element of products" style="height: 250px;border-radius: 8px;padding-top: 0%;overflow:hidden" >
+  <ion-card (press)="holdEvent($event, element.id)" *ngFor="let element of products" style="height: 250px;border-radius: 8px;padding-top: 0%;overflow:hidden" >
     <ion-grid >
       <ion-row >
         <ion-col align-self-start style="padding:0;">

@@ -4,7 +4,7 @@ import {ViewController, IonicPage, NavController, NavParams , AlertController, A
 
 import { AngularFireAuth} from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
-import  { FirebaseApp } from 'angularfire2';
+import  { FirebaseApp, AngularFireModule } from 'angularfire2';
 
 
 import { Camera , CameraOptions} from "@ionic-native/camera";
@@ -43,6 +43,7 @@ export class OfferPage {
     private afDB: AngularFireDatabase, 
     public actionSheetCtrl: ActionSheetController,
     public modalCtrl: ModalController,
+    public af: AngularFireModule
   ) {
       this.grabProfile()
   }
@@ -53,16 +54,20 @@ export class OfferPage {
      this.navCtrl.push(Product);
   }
   async getOffers(){
-      var path1 = ('public_product/'+ `${this.uid}`);
-      console.log(path1)
-      this.product = this.afDB.object(path1).valueChanges().subscribe(data=>
-      {
-    var array = this.setValues(data);
-    this.products = array;
-    this.ready = true;
-    console.log('Final array',array);
+      var path = ('public_product/');
+      const query = this.afDB.list('/public_product', ref=> ref.orderByChild('owner').equalTo(this.uid)).valueChanges()
+      query.subscribe(offers=> {
+        this.products = offers;
+        
+      })
+    //   this.product = this.afDB.object(path).valueChanges().subscribe(data=>
+    //   {
+    // var array = this.setValues(data);
+    // this.products = array;
+    // this.ready = true;
+    // console.log('Final array',array);
 
-    })
+    // })
   }
   setValues(data){
     const array = Object.keys(data).map(i => data[i]);
@@ -91,6 +96,49 @@ export class OfferPage {
                                                   });
   
    })
+  }
+  /// hold button stuff
+  holdEvent(e, id){
+    this.presentActionSheet(id)
+  }
+  deleteOffer(id){
+    this.AFauth.authState.subscribe(auth=>{
+      this.afDB.object(`public_product/${id}`).remove();
+      storage().ref(`public_product/${id}/image`).delete()
+    });
+  }
+  editOffer(id){
+
+  }
+  presentActionSheet(id) {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'What would you like to do?',
+      buttons: [
+        {
+          text: 'Delete selected offer',
+          role: 'destructive',
+          handler: () => {
+            this.deleteOffer(id)
+          }
+        },
+        // {
+        //   text: 'Edit selected offer',
+        //   handler: () => {
+        //     this.editOffer(id);
+        //     console.log('Archive clicked');
+        //   }
+        // },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+  
+    actionSheet.present();
   }
 }
 @Component({
@@ -153,7 +201,7 @@ logForm(){
   }
   else{
    this.picture_key = this.generateKey();
-    this.uploadPhoto(`public_product/${this.uid}/${this.picture_key}/image`)
+    this.uploadPhoto(`public_product/${this.picture_key}/image`)
 
   }
 }
@@ -179,7 +227,7 @@ addProduct(path){
   this.product.picture = path;
   this.product.id = this.picture_key
   this.AFauth.authState.subscribe(auth =>{
-  this.afDB.object(`public_product/${auth.uid}/${this.picture_key}`).set(this.product).then((data) => {
+  this.afDB.object(`public_product/${this.picture_key}`).set(this.product).then((data) => {
     this.navCtrl.setRoot(OfferPage);
 
 } )
@@ -203,7 +251,14 @@ presentActionSheet() {
       {
         text: 'Take photo',
         handler: () => {
-          this.addPhoto();
+          this.addPhoto(1);
+          console.log('Archive clicked');
+        }
+      },
+      {
+        text: 'Choose from library',
+        handler: () => {
+          this.addPhoto(0);
           console.log('Archive clicked');
         }
       },
@@ -219,7 +274,7 @@ presentActionSheet() {
 
   actionSheet.present();
 }
-async addPhoto(){
+async addPhoto(sourceType:number){
   try {
   const options: CameraOptions = {
     quality: 100,
@@ -228,7 +283,9 @@ async addPhoto(){
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE,
-    correctOrientation: true
+    correctOrientation: true,
+    sourceType:sourceType,
+
   };
   const result = await this.camera.getPicture(options);
 

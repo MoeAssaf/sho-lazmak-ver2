@@ -3,4 +3,40 @@ page-used {
         margin: 0 0%;
         background-color: map-get($colors, light);
         border-radius: 10px}
+        .row{
+            margin-top: 10px
+        }
+        .name{
+            color: map-get($colors, primary )
+        }
+        .h6{
+            color: map-get($colors, primary );
+            
+    
+        }
+        
+        .picture{
+            background-color: map-get($colors, light);
+            width:250px;
+            height: 250px;
+            // clip: rect(0px,120px,120px,0px);      
+            border-radius: 15px;
+            margin: auto;
+            overflow: hidden;
+            
+        }
+        ion-icon {
+            font-size: 20px; //Preferred size here
+        }
+        .button-content{
+            color: map-get($colors, primary );
+            text-decoration: underline
+        }
+        .info{
+            color: grey
+        }
+        // .scroll-refresher .ionic-refresher-content.ionic-refresher-with-text{
+        //     color :map-get($colors, primary);
+        //   }
+        
 }

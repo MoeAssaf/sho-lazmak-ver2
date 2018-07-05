@@ -7,7 +7,9 @@ page-settings {
     }
     .h6{
         color: map-get($colors, primary );
-        
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        white-space: nowrap;
 
     }
     .picture{

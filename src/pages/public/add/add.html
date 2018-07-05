@@ -1,0 +1,82 @@
+<!--
+  Generated template for the AddPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header  >
+
+  <ion-navbar color="primary"> 
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content >
+  <ion-card style="border-radius: 15px"  *ngIf="owner_profile" > 
+
+    <ion-grid> 
+      <ion-row  align-items-center	text-center> 
+        <h1 class="name">{{owner_profile.name}} {{owner_profile.surname}}</h1>
+      </ion-row>
+      <ion-row justify-content-center	>
+        <ion-col  align-self-center>
+          <ion-avatar class="picture" >
+          <img  
+          [src]="owner_profile.picture" >
+        </ion-avatar>
+  
+        </ion-col>
+      </ion-row>
+      <ion-row margin  align-items-end nopadding	style="margin-bottom: 0px;padding-bottom:0px">
+          <ion-col  align-self-start 	style="overflow: scroll" >
+        <h6 class="h6">Email:</h6>
+        <h6 class="h6">Number:</h6>
+        <h6 class="h6">Address1:</h6>
+        <h6 class="h6">Address2:</h6>
+        <h6 class="h6">Address3:</h6>
+            </ion-col>
+        <ion-col style="overflow-x: scroll" align-self-start	 style="margin-right: 0px !important" >
+          <h6 class="h6" style="    text-decoration: underline;">{{owner_profile.email}}</h6>
+          <h6 class="h6">{{owner_profile.number}}</h6>
+          <h6 class="h6">{{owner_profile.address1}}</h6>
+          <h6 class="h6">{{owner_profile.address2}}</h6>
+          <h6 class="h6">{{owner_profile.address3}}</h6>
+              </ion-col>
+      </ion-row>
+      <ion-row class="footer" justify-content-between			>
+        <ion-col  class="col"><button (click)="dial(owner_profile.number)" ion-button round outline color="primary"><ion-icon name="ios-call-outline"></ion-icon>&nbsp;Call</button></ion-col>
+        <ion-col class="col"><button (click)="mailTo()"ion-button round outline color="primary"><ion-icon name="ios-mail-outline"></ion-icon>&nbsp;Email</button></ion-col>
+      </ion-row>
+    </ion-grid>
+  
+  </ion-card>
+
+
+  <ion-card style="border-radius: 8px;padding-top: 0%;overflow:hidden" *ngIf="product" >
+    <ion-grid padding>
+        <ion-row  align-items-center	text-center> 
+            <h1 class="name">{{product.name}}</h1>
+          </ion-row>
+          <ion-row  align-items-center	text-center> 
+              <h1 class="name">&#8362;{{product.price}}</h1>
+            </ion-row>
+      <ion-row >
+        <ion-col align-self-start padding >
+          <ion-avatar class="picture"  style="width:100%;height:300px; border-radius: 4px;overflow: scroll;" >
+          <img [src]="product.picture" alt="">
+        </ion-avatar>
+  
+        </ion-col>
+        </ion-row>
+  
+      <ion-row padding self-align-left>
+          <p class="info" style="width:100%;white-space:pre-line;overflow: hidden">
+            {{product.info}}
+          </p>
+        </ion-row>
+        <ion-row justify-content-center >
+            <button (click)="addToCart()" ion-button outline round  color="primary"><p  class="button-content" >Add to cart<p></button>
+        </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

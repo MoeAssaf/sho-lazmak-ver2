@@ -1,3 +1,4 @@
+import { AddPage } from './../pages/public/add/add';
 import { MainPage } from './../pages/main/main';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,6 +13,9 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera'
+import { CallNumber } from '@ionic-native/call-number';
+import { EmailComposer } from '@ionic-native/email-composer';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -44,7 +48,8 @@ import { OfferPage, Product } from '../pages/offer/offer';
     OfferPage,
     Product,
     MainPage,
-    NearbyPage
+    NearbyPage,
+    AddPage
     
   ],
   imports: [
@@ -73,9 +78,8 @@ import { OfferPage, Product } from '../pages/offer/offer';
     OfferPage,
     Product,
     MainPage,
-    NearbyPage
-    
-    
+    NearbyPage,
+    AddPage
 
   ],
   providers: [
@@ -85,6 +89,8 @@ import { OfferPage, Product } from '../pages/offer/offer';
     AngularFireAuth,
     AngularFireStorage,
     Camera,
+    CallNumber,
+    EmailComposer,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
