@@ -63,6 +63,9 @@ export class SettingsPage {
   async grabProfile(){
     try{
     const result = await this.AFauth.authState.subscribe(data => {
+      if(data == null){
+        this.logout()
+      }
       this.uid = data.uid;
       this.email = data.email;
      
@@ -73,12 +76,18 @@ export class SettingsPage {
                  this.profile.subscribe(data => {console.log('Grabbed profile', data);
                                     this.profile = data;
                                     this.ready = true;
+                                    if(data.level == 2){
+                                      this.events.publish('userStore')
+                                    }
                                     this.getProfileImageUrl();
-                                   
+                                    
                                                   });
 
-   })}
+   });
+  
+  }
    catch(e){
+     console.log(e)
      this.logout()
    }
   }

@@ -1,3 +1,4 @@
+import { AngularFireDatabase } from 'angularfire2/database';
 
 import { Component } from '@angular/core';
 import { NavController , AlertController , Events, IonicPage} from 'ionic-angular';
@@ -13,9 +14,11 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class LoginPage {
   todo = {email:"",password:""}
+  uid: string;
 
   constructor(
     private AFauth : AngularFireAuth,
+    private afDB: AngularFireDatabase,
     public navCtrl: NavController,
       private alertCtrl: AlertController,
       private storage: Storage,
@@ -77,6 +80,8 @@ async authenticate(field){
   try{
     const result = await this.AFauth.auth.signInWithEmailAndPassword(field.email, field.password);
     if (result){
+      console.log(result.user.uid)
+      this.uid = result.user.uid
       this.setLoginData(field.email,field.password);
       //successful
       this.navCtrl.setRoot(TabsPage);}
@@ -93,7 +98,17 @@ setLoginData(email,password){
     this.storage.set('email',email);
     this.storage.set('password',password);
     this.storage.set('state','logged');
-    this.events.publish('userloggedin');
     console.log('Storing details(SUCCESS)');
+    this.afDB.object(`profile/${this.uid}`).valueChanges().subscribe(data=>{
+      console.log(data)
+      if(data['level'] == 1){
+    this.events.publish('userloggedin');
+  }else if (data['level'] == 2){
+    console.log('is store')
+    this.events.publish('userStore')
   }
+  })
+}
+    
+    
 }

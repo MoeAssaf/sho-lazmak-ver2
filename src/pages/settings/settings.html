@@ -58,6 +58,10 @@
         <h6 class="h6">{{profile.address3}}</h6>
             </ion-col>
     </ion-row>
+    <ion-row justify-content-center text-center *ngIf="profile.level == 2">
+      <ion-icon class="check" name="md-checkmark-circle-outline"></ion-icon>
+      <h6 class="check" >STORE OWNER</h6>
+    </ion-row>
     <br>
     <br>
     <br>

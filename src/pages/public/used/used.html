@@ -9,8 +9,8 @@
   <ion-navbar color="primary"> 
     
       <button ion-button menuToggle><ion-icon name="md-list-box"></ion-icon></button>
-  </ion-navbar>
 
+  </ion-navbar>
 </ion-header>
 
 
@@ -23,12 +23,12 @@
         refreshingSpinner="circles"
         refreshingText="Refreshing..."></ion-refresher-content>
     
-      </ion-refresher>
+      </ion-refresher  >
     <div width=100% padding >
-        <ion-searchbar	 class="searchbar"></ion-searchbar>
+        <ion-searchbar   [(ngModel)]="query"(keydown)="search($event)"  class="searchbar"></ion-searchbar>
       </div>
         <span > 
-        <ion-card (click)="viewOffer(element.id, element.owner)" (press)="holdEvent($event, element.id)" *ngFor="let element of products" style="height: 250px;border-radius: 8px;padding-top: 0%;overflow:hidden" >
+        <ion-card (click)="viewOffer(element.id, element.owner)" (press)="holdEvent($event, element.id,element.owner)" *ngFor="let element of products" style="height: 260px;border-radius: 8px;padding-top: 0%;overflow:hidden" >
           <ion-grid >
             <ion-row >
               <ion-col align-self-start style="padding:0;">
@@ -43,6 +43,8 @@
                 <h6 class="h6">{{element.name}}</h6>
                 <p style="font-size: 15px" class="h6">&#8362;{{element.price}}</p>
                 <p style="font-size: 15px" class="h6">{{element.category}}</p>
+                <p style="font-size: 15px" class="h6">{{element.state}}</p>
+
               </ion-col>
               <ion-col self-align-left>
                 <p class="info" style="width:100%;white-space:normal;overflow: hidden">
@@ -51,7 +53,11 @@
               </ion-col>
             </ion-row>
           </ion-grid>
+       
         </ion-card>
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
         </span>
         <!-- <ion-fab  bottom right margin >
             <button (click)="presentProfileModal()" ion-fab round><ion-icon name="md-add"></ion-icon></button>

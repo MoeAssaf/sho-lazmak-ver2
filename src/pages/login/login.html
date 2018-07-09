@@ -1,6 +1,6 @@
-<ion-content no-bounce style="height: 100%;" >
+<ion-content no-bounce style="height: 100%;" class="flyer" >
 
-  <ion-grid style="padding:0px;height:100%;" ion-fixed>
+  <ion-grid style="padding:0px;height:70%;background-color: white" >
 <ion-row margin>
   <button ion-button menuToggle style="width:10%" clear  color="primary" ><ion-icon  class="icon" name="md-list"></ion-icon></button>
 </ion-row>
@@ -9,10 +9,6 @@
     </ion-row>
     <br>
     <br>
-    <br>
-<br>
-<br>
-<br>
     <br>
     <form (ngSubmit)="logForm()"  >
     <ion-row justify-content-center>
@@ -38,34 +34,19 @@
         </ion-list>
     </ion-col>
     </ion-row>
-    <br>
     <ion-row justify-content-center >
       <button ion-button type="submit" round outline>Login</button>
     </ion-row>
+    <br>
   </form>
-  <!-- FORM ENDS HERE -->
+</ion-grid>
 
-<br>
+    <!-- <div class="flyer" style="width:100%;height:100%" text-center> -->
+      <ion-row  justify-content-center class="flyer" padding style="height: max-content;margin-bottom: 0px !important"> 
+        <h3 margin style="color:white">Dont have an account?</h3>
+        <button margin ion-button  (click)="register()" round color="white"><p  class="button-content">Create a new account<p></button>
+    
+    <!-- </div> -->
+    </ion-row>
 
-
-
-<br>
-<br>
-<br>
-<br>
-
-
-<ion-row class="flyer" justify-content-center style="height:100%;float:bottom">
-<!-- <div class="flyer" style="width:100%;height:100%" text-center> -->
-
-    <h3  style="color:white">Dont have an account?</h3>
-    <button ion-button  (click)="register()" round color="white"><p  class="button-content">Create a new account<p></button>
-
-<!-- </div> -->
-</ion-row>
-
-
-
-
-  </ion-grid>
 </ion-content>

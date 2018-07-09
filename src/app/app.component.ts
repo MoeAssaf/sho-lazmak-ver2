@@ -1,3 +1,4 @@
+import { StorePage } from './../pages/store/store';
 import { Component , ViewChild } from '@angular/core';
 import { Platform , Nav , Events} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -7,10 +8,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { StoresPage } from "../pages/stores/stores";
 import { LoginPage } from "../pages/login/login"
-import { PublicPage } from '../pages/public/public';
 import { SettingsPage } from '../pages/settings/settings';
 import { Storage } from '@ionic/storage';
 import { OfferPage } from '../pages/offer/offer';
+import { UsedPage } from '../pages/public/used/used';
 @Component({
   templateUrl: 'app.html'
 })
@@ -21,6 +22,7 @@ export class MyApp {
   activePage:any
 loggedIn: any
 loggedOut: any
+userStore:any
   constructor(
     public platform: Platform,
     public statusBar: StatusBar, 
@@ -29,7 +31,7 @@ loggedOut: any
     public events: Events) {
     this.loggedIn = [
         { title: 'Home', icon:'ios-home-outline', component: TabsPage },
-        { title: 'Other offers & deals', icon:'ios-basket-outline', component: PublicPage },
+        { title: 'Other offers & deals', icon:'ios-basket-outline', component: UsedPage },
         { title: 'Stores', icon:'ios-navigate-outline', component: StoresPage},
         { title: 'My offers & deals', icon: 'ios-add-outline', component: OfferPage},
         { title: 'Settings', icon:'ios-construct-outline', component: SettingsPage }
@@ -37,10 +39,19 @@ loggedOut: any
       ];
     this.loggedOut = [
         { title: 'Home', icon:'ios-home-outline', component: TabsPage },
-        { title: 'Other offers & deals', icon:'ios-basket-outline', component: PublicPage },
+        { title: 'Other offers & deals', icon:'ios-basket-outline', component: UsedPage },
         { title: 'Stores', icon:'ios-navigate-outline', component: StoresPage},
         { title: 'Login/Register', icon:'ios-at-outline', component: LoginPage },
       ];
+    this.userStore = [ 
+      { title: 'Home', icon:'ios-home-outline', component: TabsPage },
+      { title: 'Other offers & deals', icon:'ios-basket-outline', component: UsedPage },
+      { title: 'Stores', icon:'ios-navigate-outline', component: StoresPage},
+      { title: 'My offers & deals', icon: 'ios-add-outline', component: OfferPage},
+      { title: 'My store', icon:'ios-pricetag-outline',component: StorePage},
+      { title: 'Settings', icon:'ios-construct-outline', component: SettingsPage }
+     
+    ];
       this.activePage = "TabsPage";
       this.events.subscribe('userloggedin', (user, time) => {
         this.pages = this.loggedIn
@@ -51,7 +62,12 @@ loggedOut: any
       this.pages = this.loggedOut
       // user and time are the same arguments passed in `events.publish(user, time)`
       console.log('Welcome', user, 'at', time, this.loggedIn);
-  })
+  });
+  this.events.subscribe('userStore', (user, time) => {
+    this.pages = this.userStore
+    // user and time are the same arguments passed in `events.publish(user, time)`
+    console.log('Welcome', user, 'at', time, this.loggedIn);
+})
     this.store.get('state').then((val) => {
       console.log(val);
       if( val != 'logged'){

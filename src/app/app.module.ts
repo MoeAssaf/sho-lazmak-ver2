@@ -1,3 +1,5 @@
+import { StorePage } from './../pages/store/store';
+import { UsedPage, ReportPage } from './../pages/public/used/used';
 import { AddPage } from './../pages/public/add/add';
 import { MainPage } from './../pages/main/main';
 import { NgModule, ErrorHandler } from '@angular/core';
@@ -24,7 +26,6 @@ import { NearbyPage } from "../pages/nearby/nearby";
 import { StoresPage } from "../pages/stores/stores";
 import { LoginPage } from "../pages/login/login";
 import { RegisterPage } from "../pages/register/register";
-import { PublicPage } from '../pages/public/public';
 import { SettingsPage } from '../pages/settings/settings'
 import { ProfilePage } from '../pages/settings/profile/profile'
 
@@ -42,14 +43,16 @@ import { OfferPage, Product } from '../pages/offer/offer';
     StoresPage,
     LoginPage,
     RegisterPage,
-    PublicPage,
     SettingsPage,
     ProfilePage,
     OfferPage,
     Product,
     MainPage,
     NearbyPage,
-    AddPage
+    AddPage,
+    UsedPage,
+    ReportPage,
+    StorePage
     
   ],
   imports: [
@@ -71,7 +74,6 @@ import { OfferPage, Product } from '../pages/offer/offer';
     ProductsPage,
     StoresPage,
     LoginPage,
-    PublicPage,
     SettingsPage,
     RegisterPage,
     ProfilePage,
@@ -79,7 +81,10 @@ import { OfferPage, Product } from '../pages/offer/offer';
     Product,
     MainPage,
     NearbyPage,
-    AddPage
+    AddPage,
+    UsedPage,
+    ReportPage,
+    StorePage
 
   ],
   providers: [

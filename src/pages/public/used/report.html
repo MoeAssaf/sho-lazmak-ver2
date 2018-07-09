@@ -1,0 +1,65 @@
+<ion-header  >
+    
+    <ion-navbar color="primary"> 
+      
+       <ion-title>Report</ion-title>
+  
+    </ion-navbar>
+  </ion-header>
+<ion-content>
+      <ion-card style="border-radius: 15px" padding >
+        <ion-grid style="padding:0px;height:100%;" >
+          <br>
+          <br>
+          <br>
+          <ion-row justify-content-center>
+            <ion-col text-center >
+              <h1 class="name">Provide report details:</h1>
+            </ion-col>
+          </ion-row>
+          <br>
+      
+          <form (ngSubmit)="logForm()">
+     
+          <ion-row justify-content-center >
+            <ion-col>
+              <ion-item class ="input">
+                <ion-label color="primary" >Choose an option:</ion-label>
+              </ion-item>
+              <ion-list radio-group [(ngModel)]="report.reason" name="reason">
+                <ion-item>
+                  <ion-label>Product is not serious or irrelevant</ion-label>
+                  <ion-radio value="Product is not serious or irrelevant" checked></ion-radio>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Violates copyrights</ion-label>
+                  <ion-radio value="Copyright violation"></ion-radio>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Nudity / Pornography</ion-label>
+                  <ion-radio value="Nudity/Pornograhy"></ion-radio>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Other</ion-label>
+                  <ion-radio value="other"></ion-radio>
+                </ion-item>
+              </ion-list>
+              </ion-col>
+          </ion-row> 
+          <ion-row justify-content-center *ngIf="report.reason == 'other'">
+            <ion-col>
+                <ion-item class="input">
+                  <ion-label color="primary" stacked>Description:</ion-label>
+                  <ion-textarea type="text" placeholder="Provide specific details" [(ngModel)]="report.description" name="description" required></ion-textarea>
+                </ion-item>
+              </ion-col>
+          </ion-row>
+          </form>
+    
+          <ion-row justify-content-center >
+            <button (click)="logForm()" ion-button outline round  color="primary"><p  class="button-content" >Submit<p></button>
+        </ion-row>
+        </ion-grid>
+      </ion-card>
+      
+</ion-content>  
