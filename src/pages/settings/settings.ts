@@ -98,7 +98,7 @@ export class SettingsPage {
   async takePhoto(sourceType:number){
     try {
     const options: CameraOptions = {
-      quality: 50,
+      quality: 120,
       targetHeight: 600,
       targetWidth: 600,
       destinationType: this.camera.DestinationType.DATA_URL,

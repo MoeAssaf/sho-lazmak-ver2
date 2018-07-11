@@ -1,3 +1,4 @@
+import { StoreproductsPage } from './../pages/storeproducts/storeproducts';
 import { StorePage } from './../pages/store/store';
 import { UsedPage, ReportPage } from './../pages/public/used/used';
 import { AddPage } from './../pages/public/add/add';
@@ -34,6 +35,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { OfferPage, Product } from '../pages/offer/offer';
+import { MystorePage } from '../pages/mystore/mystore';
+import { StoreprofilePage } from '../pages/storeprofile/storeprofile';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { OfferPage, Product } from '../pages/offer/offer';
     AddPage,
     UsedPage,
     ReportPage,
-    StorePage
+    MystorePage,
+    StorePage,
+    StoreprofilePage
+  
     
   ],
   imports: [
@@ -84,8 +90,10 @@ import { OfferPage, Product } from '../pages/offer/offer';
     AddPage,
     UsedPage,
     ReportPage,
-    StorePage
-
+    MystorePage,
+    StorePage,
+    StoreprofilePage
+  
   ],
   providers: [
     StatusBar,

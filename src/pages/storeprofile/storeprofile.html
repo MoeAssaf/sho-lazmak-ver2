@@ -1,0 +1,144 @@
+<!--
+  Generated template for the StoreprofilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar  color="primary" class="navbar">
+    <ion-title style="margin-right:15%;">Store profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card style="border-radius: 15px" padding>
+      <ion-grid style="padding:0px;height:100%;" >
+        <br>
+        <br>
+        <br>
+        <ion-row justify-content-center>
+          <ion-col text-center >
+            <h1 class="name">Specify details</h1>
+          </ion-col>
+        </ion-row>
+        <br>
+    
+        <!-- THIS IS  THE FORM  -->
+        <form (ngSubmit)="logForm()">
+        <ion-row justify-content-center >
+          <ion-col>
+              <ion-item class="input">
+                <ion-label color="primary" stacked>Store's name</ion-label>
+                <ion-input type="text" placeholder="Store's name here" [(ngModel)]="store.name" name="name" required></ion-input>
+              </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row justify-content-center >
+            <ion-col>
+                <ion-item class="input">
+                  <ion-label color="primary" stacked>Description:</ion-label>
+                  <ion-textarea type="text" placeholder="Provide information about this store" [(ngModel)]="store.info" name="info" required></ion-textarea>
+                </ion-item>
+              </ion-col>
+          </ion-row>
+          <ion-row justify-content-center >
+              <ion-col>
+                  <ion-item class="input">
+                    <ion-label color="primary" stacked>Email:</ion-label>
+                    <ion-input type="text" placeholder="Store's email" [(ngModel)]="store.email" name="email" required></ion-input>
+                  </ion-item>
+                </ion-col>
+            </ion-row>
+        <ion-row justify-content-center >
+          <ion-col>
+              <ion-item class="input">
+                <ion-label color="primary" stacked>Telephone</ion-label>
+                <ion-input type="tel" placeholder="Store's telephone" [(ngModel)]="store.telephone" name="telephone" required></ion-input>
+              </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row justify-content-center >
+          <ion-col>
+              <ion-item class="input">
+                <ion-label color="primary" stacked>Telefax</ion-label>
+                <ion-input type="tel" placeholder="Fax number" [(ngModel)]="store.telefax" name="telefax" required></ion-input>
+              </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row justify-content-center >
+          <ion-col>
+              <ion-item class="input">
+                <ion-label color="primary" stacked>Address 1:</ion-label>
+                <ion-textarea type="text" placeholder="Street" [(ngModel)]="store.address1" name="address1" required></ion-textarea>
+              </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row justify-content-center >
+          <ion-col>
+              <ion-item class="input">
+                <ion-label color="primary" stacked>Address 2:</ion-label>
+                <ion-textarea type="text" placeholder="Area" [(ngModel)]="store.address2" name="address2" required></ion-textarea>
+              </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row justify-content-center >
+          <ion-col>
+              <ion-item class="input">
+                <ion-label color="primary" stacked>Address 3</ion-label>
+                <ion-textarea type="text" placeholder="City/Town" [(ngModel)]="store.address3" name="address3" required></ion-textarea>
+              </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row justify-content-center >
+          <ion-col>
+            <ion-item class ="input">
+              <ion-label color="primary" stacked>Category</ion-label>
+              <ion-select [(ngModel)]="store.category" name="category">
+                <ion-option value="smartphones">Smart Phones</ion-option>
+                <ion-option value="sports">Sports</ion-option>
+                <ion-option value="fashion">Fashion</ion-option>
+                <ion-option value="health">Body and health</ion-option>
+                <ion-option value="electronics">Computers and Electronics</ion-option>
+                <ion-option value="music">Musical supplies</ion-option>
+                <ion-option value="food">Food supplies</ion-option>
+                <ion-option value="cars">Cars</ion-option>
+                <ion-option value="animals">Pets and animals</ion-option>
+                <ion-option value="other">Other</ion-option>
+                
+              </ion-select>
+            </ion-item>
+            </ion-col>
+        </ion-row> 
+        <!-- <ion-row justify-content-center >
+          <ion-col text-center>
+                <ion-label color="primary" stacked>Product's current state?</ion-label>
+                <ion-segment [(ngModel)]="store.state" name="state"color="primary">
+                  <ion-segment-button value="used">
+                    Used
+                  </ion-segment-button>
+                  <ion-segment-button value="unused">
+                    Unused
+                  </ion-segment-button>
+                </ion-segment>
+            </ion-col>
+        </ion-row>    -->
+        <!-- <ion-row justify-content-center	>
+
+            <ion-col text-center align-self-center>
+                <ion-label color="primary" stacked>Please add a picture of the porduct</ion-label>
+              <br>
+              <ion-avatar class="picture" (click)="presentActionSheet()" >
+              <img [src]="image" alt="">
+            </ion-avatar>
+      
+            </ion-col>
+          </ion-row>     -->
+        </form>
+  
+        <ion-row justify-content-center >
+          <button (click)="logForm()" ion-button outline round  color="primary"><p  class="button-content" >Submit<p></button>
+      </ion-row>
+      </ion-grid>
+    </ion-card>
+    
+    </ion-content>

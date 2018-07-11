@@ -1,3 +1,43 @@
 page-store {
+.card{
+    border-radius: 15px;
+    border: 1px solid map-get($colors, primary )
+}
+.row{
+    margin-top: 10px
+}
+.name{
+    color: map-get($colors, primary )
+}
+.h6{
+    color: map-get($colors, primary );
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
+}
+.picture{
+    background-color: map-get($colors, light);
+    width:250px;
+    height: 200px;
+    // clip: rect(0px,120px,120px,0px);      
+    border-radius: 10%;
+    border: 1px solid map-get($colors, primary );
+    margin: auto;
+    overflow: hidden;
+    
+}
+ion-icon {
+    font-size: 20px; //Preferred size here
+}
+.button-content{
+    color: map-get($colors, primary );
+    text-decoration: underline
+}
+// .scroll-refresher .ionic-refresher-content.ionic-refresher-with-text{
+//     color :map-get($colors, primary);
+//   }
+.check{
+    color: lightgreen
+}
 }
