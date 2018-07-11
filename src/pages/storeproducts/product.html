@@ -1,0 +1,101 @@
+<ion-header>
+    <ion-navbar  color="primary" class="navbar" >
+      <!-- <button (click)="dismiss()" color="white" ion-button clear>Cancel</button> -->
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+
+      <ion-card class="card" style="border-radius: 15px" padding *ngIf="ready">
+        <ion-grid style="padding:0px;height:100%;" >
+          <br>
+          <br>
+          <br>
+          <ion-row justify-content-center>
+            <ion-col text-center >
+              <h1 class="name">Specify details</h1>
+            </ion-col>
+          </ion-row>
+          <br>
+      
+          <!-- THIS IS  THE FORM  -->
+          <form (ngSubmit)="logForm()">
+          <ion-row justify-content-center >
+            <ion-col>
+                <ion-item class="input">
+                  <ion-label color="primary" stacked>Product's name</ion-label>
+                  <ion-input type="text" placeholder="What are you selling?" [(ngModel)]="product.name" name="name" required></ion-input>
+                </ion-item>
+              </ion-col>
+          </ion-row>
+          <ion-row justify-content-center >
+              <ion-col>
+                  <ion-item class="input">
+                    <ion-label color="primary" stacked>Description:</ion-label>
+                    <ion-textarea type="text" placeholder="Provide information about this product?" [(ngModel)]="product.info" name="info" required></ion-textarea>
+                  </ion-item>
+                </ion-col>
+            </ion-row>
+          <ion-row justify-content-center >
+            <ion-col>
+                <ion-item class="input">
+                  <ion-label color="primary" stacked>Product's price</ion-label>
+                  <ion-input type="number" placeholder="How much?" [(ngModel)]="product.price" name="name" required></ion-input>
+                </ion-item>
+              </ion-col>
+          </ion-row>
+
+          <ion-row justify-content-center >
+            <ion-col>
+              <ion-item class ="input">
+                <ion-label color="primary" stacked>Category</ion-label>
+                <ion-select [(ngModel)]="product.category" name="category">
+                  <ion-option value="smartphones">Smart Phones</ion-option>
+                  <ion-option value="sports">Sports</ion-option>
+                  <ion-option value="fashion">Fashion</ion-option>
+                  <ion-option value="health">Body and health</ion-option>
+                  <ion-option value="electronics">Computers and Electronics</ion-option>
+                  <ion-option value="music">Musical supplies</ion-option>
+                  <ion-option value="food">Food supplies</ion-option>
+                  <ion-option value="cars">Cars</ion-option>
+                  <ion-option value="animals">Pets and animals</ion-option>
+                  <ion-option value="other">Other</ion-option>
+                  
+                </ion-select>
+              </ion-item>
+              </ion-col>
+          </ion-row> 
+          <!-- <ion-row justify-content-center >
+            <ion-col text-center>
+                  <ion-label color="primary" stacked>Product's current state?</ion-label>
+                  <ion-segment [(ngModel)]="product.state" name="state"color="primary">
+                    <ion-segment-button value="used">
+                      Used
+                    </ion-segment-button>
+                    <ion-segment-button value="unused">
+                      Unused
+                    </ion-segment-button>
+                  </ion-segment>
+              </ion-col>
+          </ion-row>    -->
+          <ion-row justify-content-center	>
+
+              <ion-col text-center align-self-center>
+                  <ion-label color="primary" stacked>Please add a picture of the porduct</ion-label>
+                <br>
+                <ion-avatar class="picture" (click)="presentActionSheet()" >
+                <img [src]="image" alt="">
+              </ion-avatar>
+        
+              </ion-col>
+            </ion-row>    
+          </form>
+    
+          <ion-row justify-content-center >
+            <button (click)="logForm()" ion-button outline round  color="primary"><p  class="button-content" >Submit<p></button>
+        </ion-row>
+        </ion-grid>
+      </ion-card>
+      
+      </ion-content>
+      

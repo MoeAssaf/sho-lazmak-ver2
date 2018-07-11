@@ -19,6 +19,8 @@ page-settings {
         // clip: rect(0px,120px,120px,0px);      
         border-radius: 50%;
         margin: auto;
+        border: 1px solid map-get($colors, primary );
+
         overflow: hidden;
         
     }
@@ -34,5 +36,9 @@ page-settings {
     //   }
     .check{
         color: lightgreen
+    }
+    .card{
+        border: 1px solid map-get($colors, primary );
+
     }
 }

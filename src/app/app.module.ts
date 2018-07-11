@@ -1,4 +1,4 @@
-import { StoreproductsPage } from './../pages/storeproducts/storeproducts';
+import { StoreproductsPage, StoreProduct } from './../pages/storeproducts/storeproducts';
 import { StorePage } from './../pages/store/store';
 import { UsedPage, ReportPage } from './../pages/public/used/used';
 import { AddPage } from './../pages/public/add/add';
@@ -57,7 +57,8 @@ import { StoreprofilePage } from '../pages/storeprofile/storeprofile';
     ReportPage,
     MystorePage,
     StorePage,
-    StoreprofilePage
+    StoreprofilePage,
+    StoreProduct
   
     
   ],
@@ -92,7 +93,8 @@ import { StoreprofilePage } from '../pages/storeprofile/storeprofile';
     ReportPage,
     MystorePage,
     StorePage,
-    StoreprofilePage
+    StoreprofilePage,
+    StoreProduct
   
   ],
   providers: [

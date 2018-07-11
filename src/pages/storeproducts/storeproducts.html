@@ -6,13 +6,17 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>storeproducts</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
+    <ion-navbar color="primary" text-center>
+        <button ion-button menuToggle><ion-icon name="md-list-box"></ion-icon></button>
+  
+      <ion-title style="margin-right:15%;">Settings</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
 
 <ion-content padding>
-
+    <ion-fab  bottom right margin >
+        <button (click)="loadForm()" ion-fab round><ion-icon name="md-add"></ion-icon></button>
+      </ion-fab>
 </ion-content>

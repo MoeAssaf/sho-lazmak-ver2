@@ -21,7 +21,8 @@ page-storeprofile {
         border-radius: 15px;
         margin: auto;
         overflow: hidden;
-        
+        border: 1px solid map-get($colors, primary );
+
     }
     ion-icon {
         font-size: 20px; //Preferred size here
@@ -32,6 +33,10 @@ page-storeprofile {
     }
     .info{
         color: grey
+    }
+    .card{
+        border: 1px solid map-get($colors, primary );
+
     }
     // .scroll-refresher .ionic-refresher-content.ionic-refresher-with-text{
     //     color :map-get($colors, primary);

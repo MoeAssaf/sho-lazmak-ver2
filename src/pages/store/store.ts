@@ -100,7 +100,7 @@ export class StorePage {
   async takePhoto(sourceType:number){
     try {
     const options: CameraOptions = {
-      quality: 120,
+      quality: 100,
       targetHeight: 600,
       targetWidth: 600,
       destinationType: this.camera.DestinationType.DATA_URL,
