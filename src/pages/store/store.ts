@@ -22,7 +22,7 @@ import { FirebaseApp } from 'angularfire2';
 export class StorePage {
   store_details: any
   uid: any;
-  profile: {};
+  profile: any;
   store_picture: any;
   constructor(
     public navCtrl: NavController,
@@ -66,6 +66,15 @@ export class StorePage {
 
       }
     })
+  }
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+  
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      this.navCtrl.setRoot(StorePage);
+      refresher.complete();
+    }, 2000);
   }
   presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({

@@ -10,10 +10,12 @@
 
 <div class="slide">
 
-  <ion-slides autoplay="5000" loop="true" speed="1000" >
+  <ion-slides autoplay="5000" loop="true" speed="1000" *ngIf="pictures.length >= 1" >
 <!-- Loads sale pictures from list in home.ts -->
-    <ion-slide *ngFor="let link of pictures">
-      <img class="ad" src="{{link.picture}}">
+    <ion-slide  *ngFor="let link of pictures">
+      <ion-avatar class="ad" >
+      <img  style="margin: auto" alt=""  src="{{link.picture}}">
+      </ion-avatar>
     </ion-slide>
 
   </ion-slides>
@@ -25,7 +27,7 @@
 <ion-list>
 <!-- Loads buttons from list in home.ts -->
 <div *ngFor="let button of buttons">
-<button  ion-button clear  (click)="ViewContents(button.category)">
+<button  ion-button clear  (click)="ViewContents(button.category, button.link)">
   <ion-item>
     <ion-icon name="{{button.icon}}" item-start></ion-icon>
       {{button.content}}

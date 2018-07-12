@@ -9,13 +9,40 @@
     <ion-navbar color="primary" text-center>
         <button ion-button menuToggle><ion-icon name="md-list-box"></ion-icon></button>
   
-      <ion-title style="margin-right:15%;">Settings</ion-title>
+      <ion-title style="margin-right:15%;">Store's products</ion-title>
     </ion-navbar>
   
   </ion-header>
   
 
 <ion-content padding>
+
+    <span *ngIf="products"> 
+        <ion-card (press)="holdEvent($event, element.id)" *ngFor="let element of products" style="height: 250px;border-radius: 8px;padding-top: 0%;overflow:hidden" >
+          <ion-grid >
+            <ion-row >
+              <ion-col align-self-start style="padding:0;">
+                <ion-avatar class="picture" style="width:100%;height:150px; border-radius: 4px;overflow: scroll;" >
+                <img [src]="element.picture" alt="">
+              </ion-avatar>
+        
+              </ion-col>
+              </ion-row>
+              <ion-row>
+              <ion-col>
+                <h6 class="h6">{{element.name}}</h6>
+                <p style="font-size: 15px" class="h6">&#8362;{{element.price}}</p>
+                <p style="font-size: 15px" class="h6">{{element.category}}</p>
+              </ion-col>
+              <ion-col self-align-left>
+                <p class="info" style="width:100%;white-space:normal;overflow: hidden">
+                  {{element.info}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+        </span>
     <ion-fab  bottom right margin >
         <button (click)="loadForm()" ion-fab round><ion-icon name="md-add"></ion-icon></button>
       </ion-fab>

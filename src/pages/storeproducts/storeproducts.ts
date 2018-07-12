@@ -21,19 +21,81 @@ import { storage } from 'firebase';
   templateUrl: 'storeproducts.html',
 })
 export class StoreproductsPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  uid: any;
+  products: any
+  store_details: any
+  constructor(
+    public navCtrl: NavController,
+     public navParams: NavParams,
+     private afDB: AngularFireDatabase,
+     private AFauth: AngularFireAuth,
+     private actionSheetCtrl: ActionSheetController
+    ) {
+      this.uid = this.AFauth.auth.currentUser.uid
+      console.log('uid:', this.uid)
+      if(this.uid != null){
+      this.grabStore()
+      }
   }
+  grabStore(){
+    this.afDB.list('store', ref=> ref.orderByChild('owner').equalTo(`${this.uid}`)).valueChanges().subscribe(result=>{
+      for(let object of result){
+        this.store_details = object;
+        console.log('My store:',object);
+        this.grabProducts()
+
+      }
+    })
+  }
+grabProducts(){
+  
+this.afDB.list(`store_product`, ref => ref.orderByChild('owner').equalTo(`${this.store_details.id}`))
+.valueChanges().subscribe(data=>{
+  this.products = data
+})
+}
   loadForm(){
     this.navCtrl.push(StoreProduct)
   }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad StoreproductsPage');
-  }
+    /// hold button stuff
+    holdEvent(e, id){
+      this.presentActionSheet(id)
+    }
+///////////////
 
+presentActionSheet(id) {
+  let actionSheet = this.actionSheetCtrl.create({
+    title: 'What would you like to do?',
+    buttons: [
+      {
+        text: 'Delete selected offer',
+        role: 'destructive',
+        handler: () => {
+          this.deleteOffer(id)
+        }
+      },
+
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }
+    ]
+  });
+
+  actionSheet.present();
 }
 
-///////////////////////////////////
+deleteOffer(id){
+  this.AFauth.authState.subscribe(auth=>{
+    this.afDB.object(`store_product/${id}`).remove();
+    storage().ref(`store_product/${id}/image`).delete()
+  });
+}
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 @Component({
   selector: 'page-storeproducts',
   templateUrl: 'product.html',

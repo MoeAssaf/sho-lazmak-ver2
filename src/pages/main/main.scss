@@ -6,6 +6,12 @@ page-main {
             background-color: map-get($colors, light);
             border-radius: 10px}
   .ad{width: 100%;
+        height: 250px;
+        overflow: hidden;
+        background-color: map-get($colors, light);
+        margin: auto;
+        
+
   }
   .slide{display: block;}
   .button{width:100%;

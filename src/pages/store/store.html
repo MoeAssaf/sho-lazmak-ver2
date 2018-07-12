@@ -8,12 +8,21 @@
 <ion-header>
   <ion-navbar  color="primary" class="navbar">
     <button ion-button menuToggle><ion-icon name="md-list-box"></ion-icon></button>
-    <ion-title style="margin-right:15%;">Store profile</ion-title>
+    <ion-title style="margin-right:15%;">Store's profile</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)" color="primary">
+        <ion-refresher-content 
+        color="primary"
+        pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing..."></ion-refresher-content>
+    
+      </ion-refresher>
 <ion-card *ngIf="store_details">
   <ion-grid>
       <ion-row  align-items-center	text-center> 
@@ -26,6 +35,9 @@
               <img [src]="store_picture" >
             </ion-avatar>
             </ion-col>
+        </ion-row>
+        <ion-row justify-content-center>
+          <h6 class="check">Owner: {{profile.name}} {{profile.surname}}</h6>
         </ion-row>
         <ion-row margin  align-items-end nopadding	style="margin-bottom: 0px;padding-bottom:0px">
             <ion-col  align-self-start	 >
